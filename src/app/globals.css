@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Matcha green palette (accent only) */
+  --color-matcha-50: #f0f7ea;
+  --color-matcha-100: #dcedc8;
+  --color-matcha-200: #aed581;
+  --color-matcha-300: #8bc34a;
+  --color-matcha-400: #6b9b37;
+  --color-matcha-500: #4a7c23;
+  --color-matcha-600: #3d6b1c;
+  --color-matcha-700: #2D5016;
+  --color-matcha-800: #1e3a0f;
+  --color-matcha-900: #0f1f08;
+  --color-matcha-950: #080f04;
+
+  /* Gold (PRO badge + White Label CTA only) */
+  --color-gold-400: #D4B86A;
+  --color-gold-500: #C5A55A;
+  --color-gold-600: #A8893E;
+
+  /* Site palette */
+  --color-base: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F5F3EE;
+  --color-surface-warm: #F0EDE6;
+  --color-dark-section: #1A2E12;
+
+  /* Text */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #2D3B28;
+  --color-text-body: #4A4A4A;
+  --color-text-muted: #8A8A7A;
+  --color-cream: #FFFFFF;
+  --color-dark: #1A1A1A;
+
+  /* Borders */
+  --color-border: #E8E6E0;
+  --color-border-alt: #EEECE6;
+  --color-border-input: #D4D2CC;
+
+  /* Fonts */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-logo: var(--font-logo);
+
+  /* Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-float-delayed: float 3s ease-in-out 1.5s infinite;
+  --animate-grain: grain 8s steps(10) infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-bounce-slow: bounce-slow 2s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
 }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(197, 165, 90, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(197, 165, 90, 0.6); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Base */
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAFAF7;
+  color: #1A1A1A;
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Light grain overlay — very subtle */
+.grain-overlay { position: relative; }
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 8s steps(10) infinite;
+}
+
+/* Card */
+.card-light {
+  background: #FFFFFF;
+  border: 1px solid #E8E6E0;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-light:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-color: #C5D4B8;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #FAFAF7; }
+::-webkit-scrollbar-thumb { background: #C5D4B8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2D5016; }
+
+::selection { background: rgba(45, 80, 22, 0.12); color: #1A1A1A; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
