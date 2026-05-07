@@ -1,9 +1,15 @@
-import { PRODUCTS } from "@/lib/constants";
 import { ProductCard } from "@/components/product/ProductCard";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { fetchAllProducts } from "@/lib/medusa-fetch";
+import { adaptMedusaProducts } from "@/lib/product-adapter";
+import { PRODUCTS } from "@/lib/constants";
 
-export function Products() {
+export async function Products() {
+  const medusaProducts = await fetchAllProducts();
+  const products =
+    medusaProducts.length > 0 ? adaptMedusaProducts(medusaProducts) : PRODUCTS;
+
   return (
     <section id="urunler" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +27,7 @@ export function Products() {
         </AnimatedSection>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-          {PRODUCTS.map((product, i) => (
+          {products.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
         </div>

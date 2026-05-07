@@ -11,13 +11,31 @@ const selectClass = "w-full bg-white border border-[#D4D2CC] text-[#1A1A1A] roun
 export function Contact() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    setSent(true);
+    const fd = new FormData(e.currentTarget);
+    const payload = Object.fromEntries(fd.entries());
+    try {
+      const res = await fetch("/api/iletisim", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error === "invalid_email" ? "Geçersiz e-posta." : "Mesaj gönderilemedi, lütfen tekrar deneyin.");
+        return;
+      }
+      setSent(true);
+    } catch {
+      setError("Bağlantı hatası. Lütfen tekrar deneyin.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -56,28 +74,28 @@ export function Contact() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Firma Adı</label>
-                    <input type="text" required placeholder="ABC Kafe" className={inputClass} />
+                    <input name="company" type="text" required placeholder="ABC Kafe" className={inputClass} />
                   </div>
                   <div>
                     <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">İsim Soyisim</label>
-                    <input type="text" required placeholder="Ali Yılmaz" className={inputClass} />
+                    <input name="name" type="text" required placeholder="Ali Yılmaz" className={inputClass} />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">E-posta</label>
-                    <input type="email" required placeholder="ali@kafe.com" className={inputClass} />
+                    <input name="email" type="email" required placeholder="ali@kafe.com" className={inputClass} />
                   </div>
                   <div>
                     <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Telefon</label>
-                    <input type="tel" placeholder="+49 123 456 7890" className={inputClass} />
+                    <input name="phone" type="tel" placeholder="+49 123 456 7890" className={inputClass} />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">İlgilendiğiniz Ürün</label>
-                  <select className={selectClass}>
+                  <select name="product" className={selectClass}>
                     <option value="">Seçiniz...</option>
                     <option>250ml — Başlangıç Boyutu</option>
                     <option>500ml — Standart Boyut</option>
@@ -91,11 +109,17 @@ export function Contact() {
                 <div>
                   <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Mesajınız</label>
                   <textarea
+                    name="message"
                     rows={4}
+                    required
                     placeholder="Aylık tahmini kullanım, özel istekler..."
                     className={`${inputClass} resize-none`}
                   />
                 </div>
+
+                {error && (
+                  <p className="text-red-600 text-sm" role="alert">{error}</p>
+                )}
 
                 <motion.button
                   type="submit"

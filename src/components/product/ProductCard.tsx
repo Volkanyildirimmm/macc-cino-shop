@@ -43,7 +43,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             >
               <Image
                 src="/images/matcha-bottle-hero.png"
-                alt={product.title}
+                alt={`${product.title} — ${product.volume}ml Ceremonial Grade organik matcha konsantresi şişesi`}
                 fill
                 className="object-contain drop-shadow-lg"
                 sizes="(max-width: 640px) 50vw, 25vw"

@@ -62,7 +62,7 @@ export function UseCases() {
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10" />
                 <Image
                   src={useCase.image}
-                  alt={useCase.title}
+                  alt={`${useCase.title} için matcha konsantresi kullanım senaryosu`}
                   fill
                   className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 100vw, 50vw"

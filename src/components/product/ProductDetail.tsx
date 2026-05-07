@@ -56,7 +56,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
               >
                 <Image
                   src="/images/matcha-bottle-hero.png"
-                  alt={product.title}
+                  alt={`${product.title} ${product.volume}ml — ${product.portions} porsiyon Ceremonial Grade organik matcha konsantresi`}
                   fill
                   className="object-contain drop-shadow-2xl"
                   sizes="(max-width: 768px) 100vw, 50vw"

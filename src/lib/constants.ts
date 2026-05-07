@@ -16,6 +16,51 @@ export interface ProductData {
   weight: number;
 }
 
+// UI-only metadata, keyed by Medusa product handle.
+// Medusa cannot store all UI labels/copy cleanly — this fills in volume/portions/badge etc.
+export interface HandleMeta {
+  volume: number;
+  portions: number;
+  targetText: string;
+  labelSize: string;
+  badge: string | null;
+  hasPump?: boolean;
+  pumpDosage?: number;
+}
+
+export const HANDLE_META: Record<string, HandleMeta> = {
+  "matcha-konsantre-250ml": {
+    volume: 250,
+    portions: 20,
+    targetText: "Test amaçlı, küçük işletmeler, düşük hacim",
+    labelSize: "188mm × 65mm",
+    badge: null,
+  },
+  "matcha-konsantre-500ml": {
+    volume: 500,
+    portions: 50,
+    targetText: "Orta hacimli tüketim, düzenli kullanım",
+    labelSize: "230mm × 75mm",
+    badge: null,
+  },
+  "matcha-konsantre-1000ml": {
+    volume: 1000,
+    portions: 100,
+    targetText: "Yoğun kullanım, maksimum verimlilik",
+    labelSize: "200mm × 150mm",
+    badge: null,
+  },
+  "matcha-konsantre-1000ml-pompali": {
+    volume: 1000,
+    portions: 100,
+    targetText: "Profesyonel kullanım, kafeler, hızlı servis",
+    labelSize: "200mm × 150mm",
+    badge: "PRO",
+    hasPump: true,
+    pumpDosage: 10,
+  },
+};
+
 export const PRODUCTS: ProductData[] = [
   {
     id: "prod_250",

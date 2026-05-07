@@ -6,37 +6,24 @@ import { UseCases } from "@/components/sections/UseCases";
 import { Comparison } from "@/components/sections/Comparison";
 import { Nutrition } from "@/components/sections/Nutrition";
 import { StorageTips } from "@/components/sections/StorageTips";
+import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
+import { HomeSchema } from "@/components/seo/HomeSchema";
 
 export default function HomePage() {
   return (
     <>
+      <HomeSchema />
       <Hero />
-      {/* bg: #FAFAF7 gradient */}
-
       <Products />
-      {/* bg: white */}
-
       <HowItWorks />
-      {/* bg: #F5F3EE */}
-
       <Benefits />
-      {/* bg: white */}
-
       <UseCases />
-      {/* bg: #F5F3EE */}
-
       <Comparison />
-      {/* bg: white */}
-
       <Nutrition />
-      {/* bg: #F5F3EE */}
-
       <StorageTips />
-      {/* bg: white */}
-
+      <FAQ />
       <Contact />
-      {/* bg: #F5F3EE */}
     </>
   );
 }
