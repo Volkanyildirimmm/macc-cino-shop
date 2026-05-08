@@ -59,7 +59,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="block py-3 text-base text-[#1A1A1A] hover:text-[#2D5016] transition-colors border-b border-[#EEECE6]"
+                  className="block py-3 text-base font-semibold hover:text-[#2D5016] transition-colors border-b border-[#EEECE6]"
+                  style={{ color: "#1A1A1A" }}
                 >
                   {link.label}
                 </Link>

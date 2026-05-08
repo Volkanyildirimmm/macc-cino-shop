@@ -75,9 +75,13 @@ export function FAQ() {
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#F5F3EE]/50 transition-colors"
+                  style={{ color: "#1A1A1A" }}
                   aria-expanded={isOpen}
                 >
-                  <span className="font-medium text-[#1A1A1A] text-base sm:text-lg pr-4">
+                  <span
+                    className="font-semibold text-base sm:text-lg pr-4"
+                    style={{ color: "#1A1A1A" }}
+                  >
                     {item.q}
                   </span>
                   <ChevronDown
@@ -95,7 +99,10 @@ export function FAQ() {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 text-[#1A1A1A] leading-relaxed text-sm sm:text-base">
+                      <div
+                        className="px-5 pb-5 leading-relaxed text-sm sm:text-base"
+                        style={{ color: "#1A1A1A" }}
+                      >
                         {item.a}
                       </div>
                     </motion.div>
