@@ -25,7 +25,7 @@ const kaushanScript = Kaushan_Script({
   weight: "400",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://macc-cino.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

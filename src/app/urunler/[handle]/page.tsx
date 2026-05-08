@@ -5,7 +5,7 @@ import { fetchProductByHandle } from "@/lib/medusa-fetch";
 import { adaptMedusaProduct } from "@/lib/product-adapter";
 import { ProductDetailPage } from "@/components/product/ProductDetail";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://macc-cino.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
 
 interface Props {
   params: Promise<{ handle: string }>;
