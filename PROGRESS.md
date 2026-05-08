@@ -4,8 +4,8 @@ Son güncelleme: 2026-05-07
 
 ## Genel Mimari
 
-- **Frontend (bu repo):** `c:/Users/volka/mac-cino shop/` — Next.js 16, App Router, Tailwind 4, Framer Motion
-- **Backend:** `c:/Users/volka/macc-cino-backend/apps/backend/` — Medusa v2.14.2 (Türkçe-localized starter, Iyzico + PayTR önceden gelmiş)
+- **Frontend repo:** [github.com/Volkanyildirimmm/macc-cino-shop](https://github.com/Volkanyildirimmm/macc-cino-shop) — `c:/Users/volka/mac-cino shop/` — Next.js 16, App Router, Tailwind 4, Framer Motion
+- **Backend repo:** [github.com/Volkanyildirimmm/macc-cino-shop-backend](https://github.com/Volkanyildirimmm/macc-cino-shop-backend) — `c:/Users/volka/macc-cino-backend/` — Medusa v2.14.2 turbo monorepo, asıl uygulama `apps/backend/` içinde (Türkçe-localized starter, Iyzico + PayTR önceden gelmiş)
 - **DB:** Coolify'da Postgres (`77.42.89.120:5412`, public expose)
 - **Redis:** Coolify'da (henüz public expose yok, Medusa şu an in-memory fake kullanıyor)
 - **Deploy hedefi:** Coolify (VPS: `77.42.89.120`)
@@ -113,11 +113,36 @@ Son güncelleme: 2026-05-07
 
 ## Ofiste Devam Etmek İçin
 
-1. **Repo'yu pull et:** `git clone https://github.com/Volkanyildirimmm/macc-cino-shop.git`
-2. **Backend henüz git'te yok** — `c:/Users/volka/macc-cino-backend/` ev bilgisayarında. Ofiste tekrar `npx create-medusa-app` ile kurmak yerine ev bilgisayarından klasörü kopyala VEYA ofiste de aynı kuruluma git (DB Coolify'da olduğu için aynı state'e bağlanırsın). En temiz yol: ev bilgisayarında backend için ayrı GitHub repo oluştur, push et, ofiste pull et.
-3. **`.env.local` dosyaları gitignore'da** — ofiste tekrar oluşturulması gerek. Yukarıdaki "Önemli Bilgiler" bölümündeki değerleri kullan.
-4. **Backend `.env` aynı şekilde** — DATABASE_URL, secrets, Iyzico/PayTR placeholder'ları yeniden gir.
-5. **Devam noktası:** Faz 6 — backend için git repo + Dockerfile, frontend için Dockerfile + standalone output, sonra Coolify'da app servisleri kur.
+1. **İki repo'yu da pull et:**
+   ```bash
+   git clone https://github.com/Volkanyildirimmm/macc-cino-shop.git
+   git clone https://github.com/Volkanyildirimmm/macc-cino-shop-backend.git macc-cino-backend
+   ```
+2. **Bağımlılıkları kur:**
+   ```bash
+   cd macc-cino-shop && npm install
+   cd ../macc-cino-backend && npm install
+   ```
+3. **`.env` dosyaları gitignore'da** — ofiste yeniden oluşturulması gerek:
+   - **Frontend `macc-cino-shop/.env.local`:**
+     ```
+     NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+     NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_0be27affc49db85aff45664e158b9ecca835551a0f4ade759873a490dc51b54b
+     NEXT_PUBLIC_DEFAULT_REGION=eu
+     NEXT_PUBLIC_SITE_URL=http://localhost:3000
+     RESEND_API_KEY=
+     CONTACT_TO_EMAIL=info@macc-cino.com
+     CONTACT_FROM_EMAIL=noreply@macc-cino.com
+     ```
+   - **Backend `macc-cino-backend/apps/backend/.env`:** "Önemli Bilgiler"deki Postgres URL + Iyzico/PayTR placeholder'lar + JWT/COOKIE secrets (ev bilgisayarında üretilen değerleri kopyala VEYA `node -e "console.log(require('crypto').randomBytes(48).toString('base64'))"` ile yenisi). Migration'lar zaten Coolify Postgres'te uygulanmış, yeniden çalıştırmaya gerek yok.
+4. **Çalıştır:**
+   ```bash
+   # Backend
+   cd macc-cino-backend/apps/backend && npm run dev    # localhost:9000
+   # Frontend (başka terminal)
+   cd macc-cino-shop && npm run dev                    # localhost:3000
+   ```
+5. **Devam noktası:** Faz 6 — Dockerfile'lar (frontend `output: "standalone"` + Dockerfile, backend Dockerfile), sonra Coolify'da iki app servisi kur, env vars set, domain bağla.
 
 ## Mevcut Komutlar
 
