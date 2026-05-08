@@ -1,11 +1,11 @@
 # macc-cino — İlerleme Durumu
 
-Son güncelleme: 2026-05-07
+Son güncelleme: 2026-05-08
 
 ## Genel Mimari
 
-- **Frontend (bu repo):** `c:/Users/volka/mac-cino shop/` — Next.js 16, App Router, Tailwind 4, Framer Motion
-- **Backend:** `c:/Users/volka/macc-cino-backend/apps/backend/` — Medusa v2.14.2 (Türkçe-localized starter, Iyzico + PayTR önceden gelmiş)
+- **Frontend:** `c:/Users/PC/Desktop/Shop Macc-cino/macc-cino-storefront/` — Next.js 16, App Router, Tailwind 4, Framer Motion
+- **Backend:** `c:/Users/PC/Desktop/Shop Macc-cino/macc-cino-backend/apps/backend/` — Medusa v2.14.2 (Türkçe-localized starter, Iyzico + PayTR önceden gelmiş)
 - **DB:** Coolify'da Postgres (`77.42.89.120:5412`, public expose)
 - **Redis:** Coolify'da (henüz public expose yok, Medusa şu an in-memory fake kullanıyor)
 - **Deploy hedefi:** Coolify (VPS: `77.42.89.120`)
@@ -66,9 +66,24 @@ Son güncelleme: 2026-05-07
 - `.env.local` placeholder: `RESEND_API_KEY=`, `CONTACT_TO_EMAIL=info@macc-cino.com`
 - Test: `curl POST /api/iletisim` → geçerli payload `{ok: true, dev: true}`, geçersiz email → `400 invalid_email`
 
+### Açık Tema Revizyonu (2026-05-07)
+- `Revizyon.md` spec'ine göre tüm site açık temaya geçirildi
+- `globals.css` palette: `#FAFAF7` base, `#2D5016` matcha primary, `#C5A55A` gold (sadece PRO + WL CTA)
+- Tüm sectionlar, kartlar, header, sepet, ödeme akışı beyaz/krem alternatif arka plan
+- Footer ve WhiteLabel section koyu kaldı (kontrast)
+
+### Faz 6 Hazırlık (2026-05-08)
+- Backend bu makineye çekildi: `c:/Users/PC/Desktop/Shop Macc-cino/macc-cino-backend/`
+- Backend `apps/backend/.env` oluşturuldu (Coolify Postgres URL, dev secrets, Iyzico/PayTR placeholder)
+- Frontend `.env.local`'e publishable key + Resend placeholder eklendi
+- `next.config.ts` → `output: "standalone"` eklendi
+- Frontend `Dockerfile` + `.dockerignore` yazıldı (multi-stage, NEXT_PUBLIC_* build args)
+- Backend `Dockerfile` + `.dockerignore` yazıldı (turbo monorepo aware, `apps/backend/.medusa/server` çıktısı)
+- `COOLIFY-DEPLOY.md` (root'ta) — Coolify panelinde girilecek env şablonları + adımlar
+
 ## Yapılacak ⏳
 
-### Faz 6 — Coolify Deploy
+### Faz 6 — Coolify Deploy (devam)
 
 **Hedef:** Üç servis Coolify'da, internal network'le konuşuyor:
 1. Postgres (zaten kurulu)
@@ -76,31 +91,18 @@ Son güncelleme: 2026-05-07
 3. Medusa backend — Dockerfile, `api.macc-cino.com` domain
 4. Next.js storefront — Dockerfile, `macc-cino.com` domain
 
-**Adımlar:**
-1. **Backend hazırlığı:**
-   - `apps/backend/Dockerfile` yaz (Medusa resmi production örneğinden)
-   - `apps/backend/.env` production değişkenlerini ayarla (DATABASE_URL = internal Coolify URL, REDIS_URL = internal, CORS = prod domainler)
-   - Backend'i ayrı git repo'ya push et VEYA aynı repo monorepo olarak deploy
-2. **Frontend hazırlığı:**
-   - `next.config.ts`: `output: "standalone"` ekle
-   - `Dockerfile` yaz (Next standalone)
-   - `.env.production` veya Coolify env vars: `NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://api.macc-cino.com`, publishable key
-3. **Coolify'da:**
-   - Medusa app servisi oluştur, git URL ver, env vars set, domain bağla → SSL otomatik
-   - Next.js app servisi oluştur, git URL ver, env vars set, domain bağla
-   - Postgres'i public-expose'dan **internal-only**'a geri al (güvenlik)
-4. **DNS (kullanıcı yapacak):**
-   - `macc-cino.com` → Coolify proxy → Next.js
-   - `api.macc-cino.com` → Medusa
-5. **İlk deploy sonrası:**
-   - Migrations: Coolify container exec ile `npx medusa db:migrate`
-   - Seed: `npx medusa exec ./src/scripts/seed-matcha.ts`
-   - Admin user oluştur
+**Kalan adımlar** (detay: root'taki `COOLIFY-DEPLOY.md`):
+1. Backend için `git init` + GitHub repo oluştur + push
+2. Lokal sağlık kontrolü: `npm run dev` (backend), `npm run dev` (frontend) → ürünler Medusa'dan geliyor mu
+3. Coolify'da iki app servisi oluştur (Dockerfile build), env vars gir, domain bağla
+4. DNS A record'larını kullanıcı set edecek
+5. İlk deploy sonrası: migrations + admin user + seed (lokal'den prod DB'ye bağlanarak en temiz)
+6. Postgres'i internal-only'a al
 
 **Notlar:**
-- Backend henüz git repo değil. Önce `git init` ve ayrı GitHub repo'su lazım.
+- Backend henüz git repo değil — öncelik bu.
 - Iyzico/PayTR canlı keyleri prod'da gerçeklerle değiştirilecek (şu an placeholder).
-- Frontend `.env.local`'deki backend URL prod'da `https://api.macc-cino.com` olacak.
+- `NEXT_PUBLIC_*` değişkenleri Coolify "Build Variables" olarak da girilmeli (Dockerfile ARG ile alıyor).
 
 ### Faz 7 — Parlatma
 
