@@ -2,6 +2,19 @@ const BACKEND_URL =
   process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL ?? "http://localhost:9000";
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ?? "";
 
+const FETCH_TIMEOUT_MS = 8000;
+
+function fetchWithTimeout(
+  url: string,
+  init: RequestInit & { next?: { revalidate?: number; tags?: string[] } }
+): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  return fetch(url, { ...init, signal: controller.signal }).finally(() =>
+    clearTimeout(timeout)
+  );
+}
+
 const PRODUCT_FIELDS = [
   "id",
   "handle",
@@ -20,7 +33,7 @@ const PRODUCT_FIELDS = [
 
 async function fetchRegionId(): Promise<string | null> {
   try {
-    const res = await fetch(`${BACKEND_URL}/store/regions`, {
+    const res = await fetchWithTimeout(`${BACKEND_URL}/store/regions`, {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
       next: { revalidate: 300, tags: ["medusa-regions"] },
     });
@@ -60,7 +73,7 @@ export async function fetchAllProducts(): Promise<MedusaProduct[]> {
     url.searchParams.set("limit", "20");
     if (regionId) url.searchParams.set("region_id", regionId);
 
-    const res = await fetch(url.toString(), {
+    const res = await fetchWithTimeout(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
       next: { revalidate: 60, tags: ["medusa-products"] },
     });
@@ -83,7 +96,7 @@ export async function fetchProductByHandle(
     url.searchParams.set("fields", PRODUCT_FIELDS);
     if (regionId) url.searchParams.set("region_id", regionId);
 
-    const res = await fetch(url.toString(), {
+    const res = await fetchWithTimeout(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
       next: { revalidate: 60, tags: [`medusa-product-${handle}`] },
     });
