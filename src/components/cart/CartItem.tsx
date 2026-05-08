@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useCart, type CartItem as CartItemType } from "@/hooks/useCart";
 import { formatPriceSimple } from "@/lib/utils";
@@ -15,13 +16,19 @@ export function CartItem({ item }: { item: CartItemType }) {
       exit={{ opacity: 0, x: -20 }}
       className="flex items-center gap-4 py-4 border-b border-[#EEECE6]"
     >
-      <div className="w-14 h-14 rounded-xl bg-[#F0EDE6] flex items-center justify-center flex-shrink-0">
-        <span className="text-xl">🍵</span>
+      <div className="w-14 h-14 rounded-xl bg-[#F0EDE6] overflow-hidden flex-shrink-0 relative">
+        <Image
+          src={item.product.image}
+          alt={item.product.title}
+          fill
+          sizes="56px"
+          className="object-cover"
+        />
       </div>
 
       <div className="flex-1 min-w-0">
         <p className="text-[#1A1A1A] text-sm font-medium truncate">{item.product.title}</p>
-        <p className="text-[#8A8A7A] text-xs">{formatPriceSimple(item.product.price)}</p>
+        <p className="text-[#8A8A7A] text-xs">{formatPriceSimple(item.product.price, item.product.currency)}</p>
       </div>
 
       <div className="flex items-center gap-2">
@@ -42,7 +49,7 @@ export function CartItem({ item }: { item: CartItemType }) {
 
       <div className="text-right flex-shrink-0">
         <p className="text-[#1A1A1A] text-sm font-bold">
-          {formatPriceSimple(item.product.price * item.quantity)}
+          {formatPriceSimple(item.product.price * item.quantity, item.product.currency)}
         </p>
         <button
           onClick={() => removeItem(item.product.id)}

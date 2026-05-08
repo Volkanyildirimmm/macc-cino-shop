@@ -13,6 +13,16 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
   const priceCents =
     typeof amount === "number" ? Math.round(amount * 100) : fallback?.price ?? 0;
 
+  const currency = (
+    variant.calculated_price?.currency_code ?? fallback?.currency ?? "TRY"
+  ).toUpperCase();
+
+  const idx = PRODUCTS.findIndex((x) => x.handle === p.handle);
+  const image =
+    p.thumbnail ||
+    fallback?.image ||
+    `/images/product-${(idx >= 0 ? idx : 0) + 1}.jpeg`;
+
   return {
     id: variant.id,
     handle: p.handle,
@@ -21,6 +31,7 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     description: p.description ?? fallback?.description ?? "",
     sku: variant.sku ?? fallback?.sku ?? "",
     price: priceCents,
+    currency,
     weight: p.weight ?? fallback?.weight ?? 0,
     volume: meta?.volume ?? fallback?.volume ?? 0,
     portions: meta?.portions ?? fallback?.portions ?? 0,
@@ -29,6 +40,7 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     badge: meta?.badge ?? fallback?.badge ?? null,
     hasPump: meta?.hasPump ?? fallback?.hasPump,
     pumpDosage: meta?.pumpDosage ?? fallback?.pumpDosage,
+    image,
   };
 }
 

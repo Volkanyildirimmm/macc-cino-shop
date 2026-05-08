@@ -113,13 +113,17 @@ export default function OdemePage() {
                   {items.map((item) => (
                     <div key={item.product.id} className="flex justify-between text-sm">
                       <span className="text-[#4A4A4A]">{item.product.title} × {item.quantity}</span>
-                      <span className="text-[#1A1A1A] font-medium">{formatPriceSimple(item.product.price * item.quantity)}</span>
+                      <span className="text-[#1A1A1A] font-medium">
+                        {formatPriceSimple(item.product.price * item.quantity, item.product.currency)}
+                      </span>
                     </div>
                   ))}
                 </div>
                 <div className="border-t border-[#EEECE6] pt-4 flex justify-between text-base font-bold">
                   <span className="text-[#1A1A1A]">Toplam</span>
-                  <span className="text-[#2D5016]">{formatPriceSimple(total())}</span>
+                  <span className="text-[#2D5016]">
+                    {formatPriceSimple(total(), items[0]?.product.currency)}
+                  </span>
                 </div>
 
                 <motion.button

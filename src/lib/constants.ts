@@ -5,6 +5,7 @@ export interface ProductData {
   subtitle: string;
   description: string;
   price: number;
+  currency: string;
   sku: string;
   volume: number;
   portions: number;
@@ -14,6 +15,7 @@ export interface ProductData {
   hasPump?: boolean;
   pumpDosage?: number;
   weight: number;
+  image: string;
 }
 
 // UI-only metadata, keyed by Medusa product handle.
@@ -70,6 +72,7 @@ export const PRODUCTS: ProductData[] = [
     description:
       "Denemek ve küçük ölçekli kullanım için ideal başlangıç boyutu. Ceremonial Grade organik matcha konsantresi.",
     price: 1490,
+    currency: "TRY",
     sku: "MCC-PURE-250",
     volume: 250,
     portions: 20,
@@ -77,6 +80,7 @@ export const PRODUCTS: ProductData[] = [
     labelSize: "188mm × 65mm",
     badge: null,
     weight: 400,
+    image: "/images/product-1.jpeg",
   },
   {
     id: "prod_500",
@@ -86,6 +90,7 @@ export const PRODUCTS: ProductData[] = [
     description:
       "Düzenli kullanım ve orta ölçekli işletmeler için en uygun boyut. Ceremonial Grade organik matcha konsantresi.",
     price: 2490,
+    currency: "TRY",
     sku: "MCC-PURE-500",
     volume: 500,
     portions: 50,
@@ -93,6 +98,7 @@ export const PRODUCTS: ProductData[] = [
     labelSize: "230mm × 75mm",
     badge: null,
     weight: 750,
+    image: "/images/product-2.jpeg",
   },
   {
     id: "prod_1000",
@@ -102,6 +108,7 @@ export const PRODUCTS: ProductData[] = [
     description:
       "Yoğun kullanım için büyük boy, maksimum verimlilik. Ceremonial Grade organik matcha konsantresi.",
     price: 3990,
+    currency: "TRY",
     sku: "MCC-PURE-1000",
     volume: 1000,
     portions: 100,
@@ -109,6 +116,7 @@ export const PRODUCTS: ProductData[] = [
     labelSize: "200mm × 150mm",
     badge: null,
     weight: 1400,
+    image: "/images/product-3.jpeg",
   },
   {
     id: "prod_1000p",
@@ -118,6 +126,7 @@ export const PRODUCTS: ProductData[] = [
     description:
       "Pompa dozajlama sistemiyle hızlı ve hassas servis. 1 pompa = 10ml = 1 porsiyon. Profesyoneller için tasarlandı. Ceremonial Grade organik matcha konsantresi.",
     price: 4490,
+    currency: "TRY",
     sku: "MCC-PURE-1000P",
     volume: 1000,
     portions: 100,
@@ -127,6 +136,7 @@ export const PRODUCTS: ProductData[] = [
     hasPump: true,
     pumpDosage: 10,
     weight: 1500,
+    image: "/images/product-4.jpeg",
   },
 ];
 

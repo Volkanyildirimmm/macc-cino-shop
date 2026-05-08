@@ -57,7 +57,7 @@ export default function SepetPage() {
                 <h2 className="text-[#1A1A1A] font-semibold mb-4">Sipariş Özeti</h2>
                 <div className="flex justify-between text-[#4A4A4A] text-sm mb-2">
                   <span>Ara Toplam</span>
-                  <span>{formatPriceSimple(total())}</span>
+                  <span>{formatPriceSimple(total(), items[0]?.product.currency)}</span>
                 </div>
                 <div className="flex justify-between text-[#8A8A7A] text-sm mb-4">
                   <span>Kargo</span>
@@ -65,7 +65,7 @@ export default function SepetPage() {
                 </div>
                 <div className="flex justify-between text-[#1A1A1A] font-bold text-lg border-t border-[#EEECE6] pt-4 mb-5">
                   <span>Toplam</span>
-                  <span>{formatPriceSimple(total())}</span>
+                  <span>{formatPriceSimple(total(), items[0]?.product.currency)}</span>
                 </div>
                 <Link
                   href="/odeme"

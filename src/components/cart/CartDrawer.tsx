@@ -70,7 +70,9 @@ export function CartDrawer() {
               <div className="p-6 border-t border-[#EEECE6] space-y-4 bg-[#FAFAF7]">
                 <div className="flex justify-between text-[#1A1A1A]">
                   <span className="font-medium">Toplam</span>
-                  <span className="font-bold text-xl">{formatPriceSimple(total())}</span>
+                  <span className="font-bold text-xl">
+                    {formatPriceSimple(total(), items[0]?.product.currency)}
+                  </span>
                 </div>
                 <Link
                   href="/odeme"

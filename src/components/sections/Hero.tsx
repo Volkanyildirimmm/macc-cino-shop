@@ -147,80 +147,103 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Product Image */}
+          {/* Right: Product Image + Feature badges */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
-            className="hidden lg:flex items-center justify-center relative"
+            className="flex flex-col items-center lg:justify-center"
           >
-            {/* Glow */}
-            <div className="absolute w-80 h-80 rounded-full bg-[#2D5016] opacity-[0.05] blur-3xl" />
+            {/* Bottle + desktop floating badges */}
+            <div className="relative flex items-center justify-center w-full">
+              {/* Glow */}
+              <div className="absolute w-60 h-60 lg:w-80 lg:h-80 rounded-full bg-[#2D5016] opacity-[0.05] blur-3xl" />
 
-            <motion.div
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10"
-            >
-              <Image
-                src="/images/matcha-bottle-hero.png"
-                alt="Macc&Cino Matcha Konsantre 1000ml"
-                width={320}
-                height={480}
-                className="drop-shadow-2xl"
-                priority
-                style={{ objectFit: "contain" }}
-              />
-            </motion.div>
+              <motion.div
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10"
+              >
+                <Image
+                  src="/images/matcha-bottle-hero.png"
+                  alt="Macc&Cino Matcha Konsantre 1000ml"
+                  width={320}
+                  height={480}
+                  className="drop-shadow-2xl w-48 sm:w-64 lg:w-80 h-auto"
+                  priority
+                  style={{ objectFit: "contain" }}
+                />
+              </motion.div>
 
-            {/* Floating badges */}
-            <motion.div
-              className="absolute top-4 left-0 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-            >
-              <Droplet className="w-3.5 h-3.5 text-[#2D5016]" /> Karıştırma yok
-            </motion.div>
-            
-            <motion.div
-              className="absolute top-24 -left-12 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-            >
-              <Settings2 className="w-3.5 h-3.5 text-[#2D5016]" /> Ekipman gerektirmez
-            </motion.div>
+              {/* Desktop-only floating badges (absolute positioned) */}
+              <motion.div
+                className="hidden lg:flex absolute top-4 left-0 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              >
+                <Droplet className="w-3.5 h-3.5 text-[#2D5016]" /> Karıştırma yok
+              </motion.div>
 
-            <motion.div
-              className="absolute bottom-32 -left-8 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            >
-              <Scale className="w-3.5 h-3.5 text-[#2D5016]" /> Mükemmel dozaj
-            </motion.div>
+              <motion.div
+                className="hidden lg:flex absolute top-24 -left-12 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+              >
+                <Settings2 className="w-3.5 h-3.5 text-[#2D5016]" /> Ekipman gerektirmez
+              </motion.div>
 
-            <motion.div
-              className="absolute top-10 right-0 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#2D5016]" /> Topaklanma yok
-            </motion.div>
+              <motion.div
+                className="hidden lg:flex absolute bottom-32 -left-8 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
+                <Scale className="w-3.5 h-3.5 text-[#2D5016]" /> Mükemmel dozaj
+              </motion.div>
 
-            <motion.div
-              className="absolute top-36 -right-10 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-            >
-              <Zap className="w-3.5 h-3.5 text-[#2D5016]" /> Hazır karışım
-            </motion.div>
+              <motion.div
+                className="hidden lg:flex absolute top-10 right-0 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#2D5016]" /> Topaklanma yok
+              </motion.div>
 
-            <motion.div
-              className="absolute bottom-20 -right-4 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            >
-              <Coffee className="w-3.5 h-3.5 text-[#2D5016]" /> Barista gerektirmez
-            </motion.div>
+              <motion.div
+                className="hidden lg:flex absolute top-36 -right-10 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+              >
+                <Zap className="w-3.5 h-3.5 text-[#2D5016]" /> Hazır karışım
+              </motion.div>
+
+              <motion.div
+                className="hidden lg:flex absolute bottom-20 -right-4 bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium items-center gap-2"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              >
+                <Coffee className="w-3.5 h-3.5 text-[#2D5016]" /> Barista gerektirmez
+              </motion.div>
+            </div>
+
+            {/* Mobile/tablet feature grid (visible below lg) */}
+            <div className="grid grid-cols-2 gap-2 mt-8 w-full max-w-md lg:hidden">
+              {[
+                { Icon: Droplet, label: "Karıştırma yok" },
+                { Icon: Settings2, label: "Ekipman gerektirmez" },
+                { Icon: Scale, label: "Mükemmel dozaj" },
+                { Icon: Sparkles, label: "Topaklanma yok" },
+                { Icon: Zap, label: "Hazır karışım" },
+                { Icon: Coffee, label: "Barista gerektirmez" },
+              ].map(({ Icon, label }) => (
+                <div
+                  key={label}
+                  className="bg-white/90 backdrop-blur-sm border border-[#E8E6E0] rounded-xl px-3 py-2 shadow-sm text-xs text-[#2D3B28] font-medium flex items-center gap-2"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#2D5016] flex-shrink-0" />
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>

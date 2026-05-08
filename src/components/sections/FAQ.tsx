@@ -89,13 +89,13 @@ export function FAQ() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ height: 0 }}
+                      animate={{ height: "auto" }}
+                      exit={{ height: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 text-[#4A4A4A] leading-relaxed text-sm sm:text-base">
+                      <div className="px-5 pb-5 text-[#1A1A1A] leading-relaxed text-sm sm:text-base">
                         {item.a}
                       </div>
                     </motion.div>

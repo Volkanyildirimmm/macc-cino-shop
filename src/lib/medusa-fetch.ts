@@ -21,6 +21,7 @@ const PRODUCT_FIELDS = [
   "title",
   "subtitle",
   "description",
+  "thumbnail",
   "weight",
   "metadata",
   "collection.handle",
@@ -51,6 +52,7 @@ export interface MedusaProduct {
   title: string;
   subtitle: string | null;
   description: string | null;
+  thumbnail: string | null;
   weight: number | null;
   metadata: Record<string, unknown> | null;
   variants: Array<{

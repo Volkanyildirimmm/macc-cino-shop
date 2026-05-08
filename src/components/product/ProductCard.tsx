@@ -91,10 +91,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="mt-auto space-y-3 pt-2 border-t border-[#EEECE6]">
             <div className="flex items-baseline justify-between">
               <span className="text-2xl font-bold" style={{ color: "#1A1A1A" }}>
-                {formatPriceSimple(product.price)}
+                {formatPriceSimple(product.price, product.currency)}
               </span>
               <span className="text-xs" style={{ color: "#8A8A7A" }}>
-                ~{formatPriceSimple(Math.round(product.price / product.portions))}/porsiyon
+                ~{formatPriceSimple(Math.round(product.price / product.portions), product.currency)}/porsiyon
               </span>
             </div>
             <AddToCart product={product} />

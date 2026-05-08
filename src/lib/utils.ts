@@ -5,16 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(amount: number, currency = "EUR"): string {
-  return new Intl.NumberFormat("de-DE", {
+export function formatPriceSimple(amount: number, currency = "TRY"): string {
+  return new Intl.NumberFormat("tr-TR", {
     style: "currency",
     currency,
     minimumFractionDigits: 2,
   }).format(amount / 100);
-}
-
-export function formatPriceSimple(amount: number): string {
-  return `€${(amount / 100).toFixed(2).replace(".", ",")}`;
 }
 
 export function slugify(text: string): string {

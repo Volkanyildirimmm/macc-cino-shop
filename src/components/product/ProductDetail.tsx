@@ -90,9 +90,9 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
             <AnimatedSection delay={0.1}>
               <div className="bg-white border border-[#E8E6E0] rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <div className="flex items-baseline justify-between mb-5">
-                  <span className="text-4xl font-bold" style={{ color: "#1A1A1A" }}>{formatPriceSimple(product.price)}</span>
+                  <span className="text-4xl font-bold" style={{ color: "#1A1A1A" }}>{formatPriceSimple(product.price, product.currency)}</span>
                   <span className="text-sm" style={{ color: "#8A8A7A" }}>
-                    ~{formatPriceSimple(Math.round(product.price / product.portions))}/porsiyon
+                    ~{formatPriceSimple(Math.round(product.price / product.portions), product.currency)}/porsiyon
                   </span>
                 </div>
                 <div className="space-y-3">
