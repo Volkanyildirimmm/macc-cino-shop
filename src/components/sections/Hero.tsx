@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Droplet, Settings2, Scale, Sparkles, Zap, Coffee } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { TextReveal } from "@/components/ui/TextReveal";
@@ -40,6 +41,31 @@ const PARTICLES = Array.from({ length: 12 }, (_, i) => ({
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  // Hero hem anasayfada hem /kategori/matcha sayfasında render edilebilir.
+  // Anasayfadaysa CTA butonları matcha kategori sayfasına yönlendirir,
+  // matcha kategori sayfasındaysa aynı sayfa içindeki section'lara scroll yapar.
+  const isHomepage = () =>
+    typeof window !== "undefined" && window.location.pathname === "/";
+
+  const goToProducts = () => {
+    if (isHomepage()) {
+      router.push("/kategori/matcha#urunler");
+    } else {
+      document.getElementById("urunler")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const goToHowItWorks = () => {
+    if (isHomepage()) {
+      router.push("/kategori/matcha#nasil-hazirlanir");
+    } else {
+      document
+        .getElementById("nasil-hazirlanir")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -115,14 +141,14 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <MagneticButton
-                onClick={() => document.getElementById("urunler")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={goToProducts}
                 className="bg-[#2D5016] hover:bg-[#3D6B1C] text-white font-semibold px-8 py-4 rounded-xl text-base shadow-sm transition-colors duration-300"
               >
                 Ürünleri Keşfet →
               </MagneticButton>
 
               <MagneticButton
-                onClick={() => document.getElementById("nasil-hazirlanir")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={goToHowItWorks}
                 className="bg-[#1A1A1A] hover:bg-[#333333] text-white font-medium px-8 py-4 rounded-xl text-base transition-colors duration-300"
               >
                 Nasıl Yapılır?

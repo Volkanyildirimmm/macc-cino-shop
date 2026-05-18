@@ -1,4 +1,4 @@
-import { HeroGeneric } from "@/components/sections/HeroGeneric";
+import { Hero } from "@/components/sections/Hero";
 import { Categories } from "@/components/sections/Categories";
 import { Contact } from "@/components/sections/Contact";
 
@@ -9,7 +9,7 @@ export const revalidate = 60;
 export default function HomePage() {
   return (
     <>
-      <HeroGeneric />
+      <Hero />
       <Categories />
       <Contact />
     </>
