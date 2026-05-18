@@ -130,7 +130,9 @@ export async function fetchCategories(): Promise<MedusaCategory[]> {
 
     const res = await fetchWithTimeout(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
-      next: { revalidate: 300, tags: ["medusa-categories"] },
+      // no-store: build-time'da boş gelen cevabın saplanmasını önler.
+      // Kategoriler admin'den eklenir, her render'da fresh çekilmeli.
+      cache: "no-store",
     });
     if (!res.ok) return [];
     const data = await res.json();
@@ -158,7 +160,7 @@ export async function fetchProductsByCategory(
 
     const res = await fetchWithTimeout(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
-      next: { revalidate: 60, tags: [`medusa-category-${handle}`] },
+      cache: "no-store",
     });
     if (!res.ok) return [];
     const data = await res.json();

@@ -10,7 +10,8 @@ import { ProductCard } from "@/components/product/ProductCard";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
 
-export const revalidate = 300;
+// Her istekte fresh SSR — kategori/ürün admin'den eklendiğinde anında yansır.
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: Promise<{ handle: string }>;
