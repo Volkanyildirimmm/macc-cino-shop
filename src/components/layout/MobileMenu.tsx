@@ -10,9 +10,8 @@ interface MobileMenuProps {
 }
 
 const links = [
-  { href: "/#urunler", label: "Ürünler" },
-  { href: "/#nasil-hazirlanir", label: "Nasıl Hazırlanır?" },
-  { href: "/#avantajlar", label: "Avantajlar" },
+  { href: "/#kategoriler", label: "Kategoriler" },
+  { href: "/kategori/matcha", label: "Matcha" },
   { href: "/white-label", label: "White Label" },
   { href: "/iletisim", label: "İletişim" },
 ];

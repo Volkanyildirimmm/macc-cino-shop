@@ -6,6 +6,7 @@ import {
 } from "@/lib/medusa-fetch";
 import { adaptMedusaProducts } from "@/lib/product-adapter";
 import { ProductCard } from "@/components/product/ProductCard";
+import { MatchaCategory } from "@/components/categories/MatchaCategory";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
@@ -75,6 +76,21 @@ export default async function CategoryPage({ params }: Props) {
     ],
   };
 
+  // Kategori-spesifik özel layout dispatch.
+  // Yeni kategoriler eklendikçe buraya case eklenir.
+  if (handle === "matcha") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        />
+        <MatchaCategory products={adapted} />
+      </>
+    );
+  }
+
+  // Generic kategori layout (kahve-makineleri vs. yeni kategoriler için default)
   return (
     <div
       className="min-h-screen pt-24 pb-20"

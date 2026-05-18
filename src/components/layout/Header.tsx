@@ -8,9 +8,8 @@ import { MobileMenu } from "./MobileMenu";
 import { ScrollProgress } from "./ScrollProgress";
 
 const navLinks = [
-  { href: "/#urunler", label: "Ürünler" },
-  { href: "/#nasil-hazirlanir", label: "Nasıl Hazırlanır?" },
-  { href: "/#avantajlar", label: "Avantajlar" },
+  { href: "/#kategoriler", label: "Kategoriler" },
+  { href: "/kategori/matcha", label: "Matcha" },
   { href: "/iletisim", label: "İletişim" },
 ];
 
