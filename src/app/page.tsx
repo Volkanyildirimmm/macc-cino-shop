@@ -1,5 +1,9 @@
 import { Hero } from "@/components/sections/Hero";
 import { Categories } from "@/components/sections/Categories";
+
+// ISR: anasayfa her 60 saniyede bir yeniden generate edilir.
+// Yeni kategori/ürün admin'den eklendiğinde otomatik görünür.
+export const revalidate = 60;
 import { Products } from "@/components/sections/Products";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Benefits } from "@/components/sections/Benefits";
