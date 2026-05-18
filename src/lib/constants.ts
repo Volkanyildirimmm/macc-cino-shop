@@ -16,6 +16,7 @@ export interface ProductData {
   pumpDosage?: number;
   weight: number;
   image: string;
+  categories: Array<{ id: string; name: string; handle: string }>;
 }
 
 // UI-only metadata, keyed by Medusa product handle.
@@ -81,6 +82,7 @@ export const PRODUCTS: ProductData[] = [
     badge: null,
     weight: 400,
     image: "/images/product-1.jpeg",
+    categories: [{ id: "matcha", name: "Matcha", handle: "matcha" }],
   },
   {
     id: "prod_500",
@@ -99,6 +101,7 @@ export const PRODUCTS: ProductData[] = [
     badge: null,
     weight: 750,
     image: "/images/product-2.jpeg",
+    categories: [{ id: "matcha", name: "Matcha", handle: "matcha" }],
   },
   {
     id: "prod_1000",
@@ -117,6 +120,7 @@ export const PRODUCTS: ProductData[] = [
     badge: null,
     weight: 1400,
     image: "/images/product-3.jpeg",
+    categories: [{ id: "matcha", name: "Matcha", handle: "matcha" }],
   },
   {
     id: "prod_1000p",
@@ -137,6 +141,7 @@ export const PRODUCTS: ProductData[] = [
     pumpDosage: 10,
     weight: 1500,
     image: "/images/product-4.jpeg",
+    categories: [{ id: "matcha", name: "Matcha", handle: "matcha" }],
   },
 ];
 

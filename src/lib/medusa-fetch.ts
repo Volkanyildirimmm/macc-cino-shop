@@ -25,6 +25,9 @@ const PRODUCT_FIELDS = [
   "weight",
   "metadata",
   "collection.handle",
+  "categories.id",
+  "categories.name",
+  "categories.handle",
   "variants.id",
   "variants.sku",
   "variants.title",
@@ -46,6 +49,13 @@ async function fetchRegionId(): Promise<string | null> {
   }
 }
 
+export interface MedusaCategory {
+  id: string;
+  name: string;
+  handle: string;
+  description?: string | null;
+}
+
 export interface MedusaProduct {
   id: string;
   handle: string;
@@ -55,6 +65,7 @@ export interface MedusaProduct {
   thumbnail: string | null;
   weight: number | null;
   metadata: Record<string, unknown> | null;
+  categories?: MedusaCategory[] | null;
   variants: Array<{
     id: string;
     sku: string | null;
@@ -107,5 +118,52 @@ export async function fetchProductByHandle(
     return data.products?.[0] ?? null;
   } catch {
     return null;
+  }
+}
+
+export async function fetchCategories(): Promise<MedusaCategory[]> {
+  if (!PUBLISHABLE_KEY) return [];
+  try {
+    const url = new URL(`${BACKEND_URL}/store/product-categories`);
+    url.searchParams.set("fields", "id,name,handle,description");
+    url.searchParams.set("limit", "100");
+
+    const res = await fetchWithTimeout(url.toString(), {
+      headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
+      next: { revalidate: 300, tags: ["medusa-categories"] },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.product_categories ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function fetchProductsByCategory(
+  handle: string
+): Promise<MedusaProduct[]> {
+  if (!PUBLISHABLE_KEY) return [];
+  try {
+    const categories = await fetchCategories();
+    const category = categories.find((c) => c.handle === handle);
+    if (!category) return [];
+
+    const regionId = await fetchRegionId();
+    const url = new URL(`${BACKEND_URL}/store/products`);
+    url.searchParams.set("fields", PRODUCT_FIELDS);
+    url.searchParams.set("category_id[]", category.id);
+    url.searchParams.set("limit", "50");
+    if (regionId) url.searchParams.set("region_id", regionId);
+
+    const res = await fetchWithTimeout(url.toString(), {
+      headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
+      next: { revalidate: 60, tags: [`medusa-category-${handle}`] },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.products ?? [];
+  } catch {
+    return [];
   }
 }

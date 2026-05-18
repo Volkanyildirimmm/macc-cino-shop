@@ -23,6 +23,11 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     fallback?.image ||
     `/images/product-${(idx >= 0 ? idx : 0) + 1}.jpeg`;
 
+  const categories =
+    p.categories?.map((c) => ({ id: c.id, name: c.name, handle: c.handle })) ??
+    fallback?.categories ??
+    [];
+
   return {
     id: variant.id,
     handle: p.handle,
@@ -41,6 +46,7 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     hasPump: meta?.hasPump ?? fallback?.hasPump,
     pumpDosage: meta?.pumpDosage ?? fallback?.pumpDosage,
     image,
+    categories,
   };
 }
 
