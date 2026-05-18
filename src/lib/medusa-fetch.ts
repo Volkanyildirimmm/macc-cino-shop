@@ -122,22 +122,30 @@ export async function fetchProductByHandle(
 }
 
 export async function fetchCategories(): Promise<MedusaCategory[]> {
-  if (!PUBLISHABLE_KEY) return [];
+  if (!PUBLISHABLE_KEY) {
+    console.error("[fetchCategories] PUBLISHABLE_KEY is empty");
+    return [];
+  }
   try {
     const url = new URL(`${BACKEND_URL}/store/product-categories`);
     url.searchParams.set("fields", "id,name,handle,description");
     url.searchParams.set("limit", "100");
 
+    console.log("[fetchCategories] requesting:", url.toString());
+
     const res = await fetchWithTimeout(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
-      // no-store: build-time'da boş gelen cevabın saplanmasını önler.
-      // Kategoriler admin'den eklenir, her render'da fresh çekilmeli.
       cache: "no-store",
     });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error("[fetchCategories] HTTP error:", res.status, res.statusText);
+      return [];
+    }
     const data = await res.json();
+    console.log("[fetchCategories] got", data.product_categories?.length ?? 0, "categories");
     return data.product_categories ?? [];
-  } catch {
+  } catch (err) {
+    console.error("[fetchCategories] threw:", err);
     return [];
   }
 }
