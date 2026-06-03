@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useCart } from "@/hooks/useCart";
 import { formatPriceSimple } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const inputClass = "w-full bg-white border border-[#D4D2CC] text-[#1A1A1A] placeholder-[#AAAAAA] rounded-[10px] px-4 py-[14px] text-sm focus:outline-none focus:border-[#2D5016] focus:ring-1 focus:ring-[#2D5016] transition-all";
 
@@ -27,7 +27,15 @@ export default function OdemePage() {
       <div className="min-h-screen pt-24 flex items-center justify-center" style={{ backgroundColor: "#FAFAF7" }}>
         <div className="text-center">
           <p className="text-[#8A8A7A] mb-4">Sepetiniz boş</p>
-          <Link href="/#urunler" className="text-[#2D5016] hover:underline">Ürünlere dön →</Link>
+          <Link
+            href={{
+              pathname: "/kategori/[handle]",
+              params: { handle: "matcha" },
+            }}
+            className="text-[#2D5016] hover:underline"
+          >
+            Ürünlere dön →
+          </Link>
         </div>
       </div>
     );

@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useCart } from "@/hooks/useCart";
 import { CartItem } from "./CartItem";
 import { formatPriceSimple } from "@/lib/utils";
 
 export function CartDrawer() {
+  const t = useTranslations("cart");
   const { isOpen, closeCart, items, total } = useCart();
 
   return (
@@ -30,7 +32,7 @@ export function CartDrawer() {
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-[#EEECE6]">
-              <h2 className="text-[#1A1A1A] font-display text-xl font-semibold">Sepetim</h2>
+              <h2 className="text-[#1A1A1A] font-display text-xl font-semibold">{t("title")}</h2>
               <button
                 onClick={closeCart}
                 className="text-[#8A8A7A] hover:text-[#1A1A1A] transition-colors p-1"
@@ -51,12 +53,12 @@ export function CartDrawer() {
                     className="flex flex-col items-center justify-center h-full gap-4 text-center py-20"
                   >
                     <span className="text-4xl">🛒</span>
-                    <p className="text-[#8A8A7A]">Sepetiniz boş</p>
+                    <p className="text-[#8A8A7A]">{t("empty")}</p>
                     <button
                       onClick={closeCart}
                       className="text-[#2D5016] text-sm hover:underline"
                     >
-                      Ürünlere bak →
+                      {t("go_products")}
                     </button>
                   </motion.div>
                 ) : (
@@ -69,7 +71,7 @@ export function CartDrawer() {
             {items.length > 0 && (
               <div className="p-6 border-t border-[#EEECE6] space-y-4 bg-[#FAFAF7]">
                 <div className="flex justify-between text-[#1A1A1A]">
-                  <span className="font-medium">Toplam</span>
+                  <span className="font-medium">{t("total")}</span>
                   <span className="font-bold text-xl">
                     {formatPriceSimple(total(), items[0]?.product.currency)}
                   </span>
@@ -79,13 +81,13 @@ export function CartDrawer() {
                   onClick={closeCart}
                   className="block w-full bg-[#2D5016] hover:bg-[#3D6B1C] text-white font-bold py-4 rounded-xl text-center transition-colors duration-300"
                 >
-                  Siparişi Tamamla
+                  {t("checkout")}
                 </Link>
                 <button
                   onClick={closeCart}
                   className="block w-full text-[#8A8A7A] text-sm hover:text-[#2D5016] transition-colors text-center"
                 >
-                  Alışverişe Devam Et
+                  {t("continue_shopping")}
                 </button>
               </div>
             )}

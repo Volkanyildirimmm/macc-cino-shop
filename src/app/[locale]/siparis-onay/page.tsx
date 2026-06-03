@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export default function SiparisOnayPage() {
   return (
@@ -63,7 +63,10 @@ export default function SiparisOnayPage() {
             Ana Sayfaya Dön
           </Link>
           <Link
-            href="/#urunler"
+            href={{
+              pathname: "/kategori/[handle]",
+              params: { handle: "matcha" },
+            }}
             className="border border-[#2D5016] text-[#2D5016] hover:bg-[#E8F0E0] font-medium px-8 py-3 rounded-xl transition-colors"
           >
             Alışverişe Devam Et

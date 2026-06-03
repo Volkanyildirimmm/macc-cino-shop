@@ -1,27 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { STORAGE_TIPS } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export function StorageTips() {
+  const t = useTranslations("storage");
+
+  const tips = [
+    { key: "shake", icon: "🔄" },
+    { key: "fridge", icon: "❄️" },
+    { key: "consume", icon: "⏰" },
+    { key: "dilute", icon: "⚠️" },
+  ];
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
+          <span className="text-[#2D5016] text-xs font-semibold uppercase tracking-widest mb-3 block">
+            {t("section_label")}
+          </span>
           <TextReveal
-            text="Saklama & Kullanım"
+            text={t("title")}
             as="h2"
             className="text-3xl sm:text-4xl font-display font-bold text-[#1A1A1A] mb-3"
           />
-          <p className="text-[#8A8A7A] text-base">En iyi sonuç için dikkat edilmesi gerekenler</p>
+          <p className="text-[#8A8A7A] text-base">{t("subtitle")}</p>
         </AnimatedSection>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          {STORAGE_TIPS.map((tip, i) => (
+          {tips.map((tip, i) => (
             <motion.div
-              key={tip.text}
+              key={tip.key}
               initial={{ opacity: 0, x: i % 2 === 0 ? -16 : 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -31,16 +43,10 @@ export function StorageTips() {
               <div className="w-10 h-10 rounded-xl bg-[#E8F0E0] flex items-center justify-center flex-shrink-0">
                 <span className="text-lg">{tip.icon}</span>
               </div>
-              <p className="text-[#4A4A4A] text-sm leading-relaxed">{tip.text}</p>
+              <p className="text-[#4A4A4A] text-sm leading-relaxed">{t(tip.key)}</p>
             </motion.div>
           ))}
         </div>
-
-        <AnimatedSection delay={0.3} className="mt-8 text-center">
-          <p className="text-[#8A8A7A] text-xs">
-            Açılmamış: 12 ay oda sıcaklığında · Açıldıktan sonra: 4 hafta (2–8°C)
-          </p>
-        </AnimatedSection>
       </div>
     </section>
   );

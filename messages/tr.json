@@ -1,0 +1,263 @@
+{
+  "common": {
+    "discover": "Keşfet",
+    "back": "Geri",
+    "loading": "Yükleniyor...",
+    "explore": "Keşfet →",
+    "all_rights_reserved": "Tüm hakları saklıdır.",
+    "close": "Kapat",
+    "menu": "Menü",
+    "open_cart": "Sepeti aç"
+  },
+  "nav": {
+    "categories": "Kategoriler",
+    "matcha": "Matcha",
+    "contact": "İletişim",
+    "white_label": "White Label",
+    "cart": "Sepet",
+    "language_switcher_label": "Dil"
+  },
+  "hero": {
+    "tagline_prefix": "Ceremonial Grade",
+    "tagline_org": "Organik",
+    "tagline_origin": "Almanya Üretimi",
+    "title_line1": "Matcha:",
+    "title_line2": "Japonyanın Yeşil",
+    "title_line3": "Enerjisi",
+    "subtitle_lead": "Profesyonel kullanım için standartlaştırılmış matcha konsantresi.",
+    "subtitle_highlight": "Standart. Ölçeklenebilir. Ekonomik.",
+    "cta_products": "Ürünleri Keşfet →",
+    "cta_how": "Nasıl Yapılır?",
+    "stat_portions_value": "100+",
+    "stat_portions_label": "Porsiyon / şişe",
+    "stat_speed_value": "4×",
+    "stat_speed_label": "Daha hızlı",
+    "stat_shelf_value": "12 ay",
+    "stat_shelf_label": "Raf ömrü",
+    "badge_mix": "Karıştırma yok",
+    "badge_equipment": "Ekipman gerektirmez",
+    "badge_dosage": "Mükemmel dozaj",
+    "badge_clumps": "Topaklanma yok",
+    "badge_ready": "Hazır karışım",
+    "badge_barista": "Barista gerektirmez",
+    "scroll_indicator": "KAYDIR"
+  },
+  "categories": {
+    "section_label": "Koleksiyon",
+    "title": "Kategoriler",
+    "subtitle": "Tüm ürün gruplarımıza göz atın",
+    "explore_link": "Keşfet →"
+  },
+  "matcha_category": {
+    "collection_label": "Matcha Koleksiyonu",
+    "title": "Matcha Ürünlerimiz",
+    "subtitle": "Dört farklı boyutta, her kullanım senaryosuna uygun matcha konsantresi. Ceremonial Grade, organik, Almanya üretimi."
+  },
+  "generic_category": {
+    "section_label": "Kategori",
+    "no_products": "Bu kategoride henüz ürün bulunmuyor."
+  },
+  "how_it_works": {
+    "section_label": "Kullanım Kılavuzu",
+    "title": "Üç basit adımda mükemmel matcha",
+    "subtitle": "Saniyeler içinde hazır, bekleme yok. Köpürtme veya süzme gerektirmez.",
+    "step1_title": "Dozajla",
+    "step1_description": "12.5ml konsantre koyun (2 yemek kaşığı veya 1 pompa)",
+    "step2_title": "Karıştır",
+    "step2_description": "150ml su, süt veya bitkisel süt ekleyip karıştırın",
+    "step3_title": "Keyfini Çıkar",
+    "step3_description": "Anında servise hazır — köpürtme veya süzme gerektirmez"
+  },
+  "benefits": {
+    "section_label": "Avantajlar",
+    "title": "Neden macc-cino?",
+    "subtitle": "Profesyonel matcha servisinin tüm zorluklarını ortadan kaldırdık.",
+    "fast_title": "Hızlı Hazırlık",
+    "fast_description": "Saniyeler içinde hazır, bekleme yok",
+    "consistent_title": "Tutarlı Kalite",
+    "consistent_description": "Her seferinde aynı mükemmel tat, personelden bağımsız",
+    "cost_title": "Hesaplanabilir Maliyet",
+    "cost_description": "Hassas dozajlama ile öngörülebilir marjlar",
+    "nobarista_title": "Barista Gerektirmez",
+    "nobarista_description": "Herkes hazırlayabilir, özel eğitim gerektirmez",
+    "shelf_title": "Uzun Raf Ömrü",
+    "shelf_description": "Açılmamış 12 ay, minimum fire ve kayıp",
+    "organic_title": "Organik & Ceremonial Grade",
+    "organic_description": "En yüksek kalite matcha, organik sertifikalı"
+  },
+  "use_cases": {
+    "section_label": "Kullanım Alanları",
+    "title": "Her ortama uygun",
+    "subtitle": "Profesyonel servisten ofis self-servisine, geniş bir kullanım yelpazesi.",
+    "cafe_title": "Kafeler & Restoranlar",
+    "cafe_description": "Hızlı servis, tutarlı kalite, yüksek kar marjı",
+    "office_title": "Kurumsal Ofisler",
+    "office_description": "Çalışan memnuniyeti, kolay self-servis",
+    "fitness_title": "Fitness & Sağlık Merkezleri",
+    "fitness_description": "Doğal enerji, düşük kalori, sağlıklı alternatif",
+    "chain_title": "Zincir Restoranlar",
+    "chain_description": "Standart süreçler, ölçeklenebilir operasyon"
+  },
+  "comparison": {
+    "section_label": "Karşılaştırma",
+    "title": "Hangi boyut size uygun?",
+    "subtitle": "Kullanım hacminize göre en uygun ürünü seçin.",
+    "recommended": "Önerilen",
+    "row_volume": "Hacim",
+    "row_portions": "Porsiyon",
+    "row_price": "Fiyat",
+    "row_per_portion": "Porsiyon Başına",
+    "row_dosing": "Dozajlama",
+    "row_ideal": "İdeal Kullanım",
+    "dosing_spoon": "Kaşık",
+    "dosing_pump": "1 Pompa = 10ml",
+    "ideal_test": "Deneme / Ev",
+    "ideal_small": "Düzenli / Küçük Kafe",
+    "ideal_heavy": "Yoğun Kullanım",
+    "ideal_pro": "Profesyonel Servis"
+  },
+  "nutrition": {
+    "section_label": "Beslenme",
+    "title": "Beslenme Değerleri",
+    "subtitle": "100ml ve porsiyon (12.5ml) bazında detaylı bilgi.",
+    "toggle_per100": "100ml başına",
+    "toggle_per_serving": "Porsiyon başına (12.5ml)",
+    "energy_kj": "Enerji (kJ)",
+    "energy_kcal": "Enerji (kcal)",
+    "fat": "Yağ (g)",
+    "saturated_fat": "Doymuş yağ (g)",
+    "carbs": "Karbonhidrat (g)",
+    "sugar": "Şeker (g)",
+    "protein": "Protein (g)",
+    "salt": "Tuz (g)",
+    "ingredients_title": "İçerikler",
+    "ingredients_value": "Su, Organik Matcha Tozu*, Doğal Renklendirici: Klorofil, Tatlandırıcı: Sukraloz, Askorbik Asit.",
+    "ingredients_note": "*Organik tarımdan, Ceremonial Grade"
+  },
+  "storage": {
+    "section_label": "Saklama",
+    "title": "Doğru Saklama Önerileri",
+    "subtitle": "Maksimum tazelik ve raf ömrü için uygulayın.",
+    "shake": "Kullanmadan önce iyice çalkalayın",
+    "fridge": "Açtıktan sonra buzdolabında (2-8°C) saklayın",
+    "consume": "Açtıktan sonra 4 hafta içinde tüketin",
+    "dilute": "Seyreltmeden içmeyin"
+  },
+  "faq": {
+    "section_label": "Sıkça Sorulan Sorular",
+    "title": "Matcha konsantresi hakkında her şey",
+    "items": [
+      {
+        "q": "Matcha konsantresi nedir?",
+        "a": "Matcha konsantresi, Ceremonial Grade organik matcha tozundan üretilen sıvı bir formdur. Su veya süt ile hızlıca karıştırılarak anında matcha içeceği elde edilir; köpürtme veya süzme gerektirmez."
+      },
+      {
+        "q": "Matcha konsantresi nasıl kullanılır?",
+        "a": "12.5 ml (yaklaşık 2 yemek kaşığı veya 1 pompa) konsantreyi 150 ml su, süt ya da bitkisel süt ile karıştırın. Kullanmadan önce iyice çalkalayın. Anında servise hazırdır."
+      },
+      {
+        "q": "Bir şişeden kaç porsiyon çıkar?",
+        "a": "250 ml şişe yaklaşık 20 porsiyon, 500 ml şişe yaklaşık 50 porsiyon, 1000 ml şişe ise yaklaşık 100 porsiyon verir. Her porsiyon 12.5 ml konsantre içerir."
+      },
+      {
+        "q": "Matcha konsantresi nasıl saklanır?",
+        "a": "Açılmamış şişe oda sıcaklığında 12 ay boyunca saklanabilir. Açıldıktan sonra 2-8°C arasında buzdolabında muhafaza edin ve 4 hafta içinde tüketin."
+      },
+      {
+        "q": "Konsantre organik ve Ceremonial Grade mi?",
+        "a": "Evet. macc-cino matcha konsantresi organik tarımdan elde edilen Ceremonial Grade matcha kullanır ve Almanya'da üretilir. Vegan ve glütensizdir."
+      },
+      {
+        "q": "Pompalı model ne işe yarar?",
+        "a": "1000 ml Pompalı model, dahili dozajlama pompası sayesinde her basışta tam 10 ml (1 porsiyon) verir. Profesyonel kafe ve zincir restoranlarda hızlı, tutarlı servis sağlar."
+      },
+      {
+        "q": "Toptan veya white label mümkün mü?",
+        "a": "Evet. Kafeler, zincir restoranlar ve perakende markaları için toptan satış ve özel etiketli (white label) üretim seçeneklerimiz mevcuttur. Teklif için iletişim formunu kullanın."
+      }
+    ]
+  },
+  "contact": {
+    "section_label": "İletişim",
+    "title": "Bize Ulaşın",
+    "subtitle": "Toplu sipariş, white label ve genel sorular için.",
+    "form_company": "Firma Adı",
+    "form_company_placeholder": "Firma adınız (opsiyonel)",
+    "form_name": "İsim Soyisim",
+    "form_name_placeholder": "Adınız Soyadınız",
+    "form_email": "E-posta",
+    "form_email_placeholder": "ornek@email.com",
+    "form_phone": "Telefon",
+    "form_phone_placeholder": "+90 ...",
+    "form_message": "Mesaj",
+    "form_message_placeholder": "Mesajınız...",
+    "form_submit": "Gönder",
+    "form_submitting": "Gönderiliyor...",
+    "form_success": "Mesajınız alındı, en kısa sürede dönüş yapacağız.",
+    "form_error": "Bir hata oluştu, lütfen tekrar deneyin.",
+    "form_error_required": "Bu alan zorunludur",
+    "form_error_email": "Geçerli bir e-posta girin",
+    "page_title": "İletişim"
+  },
+  "cart": {
+    "title": "Sepetim",
+    "empty": "Sepetiniz boş",
+    "go_products": "Ürünlere bak →",
+    "total": "Toplam",
+    "checkout": "Siparişi Tamamla",
+    "continue_shopping": "Alışverişe Devam Et",
+    "remove": "Sil",
+    "subtotal": "Ara Toplam",
+    "shipping": "Kargo",
+    "shipping_calculated": "Hesaplanacak",
+    "checkout_arrow": "Siparişi Tamamla →"
+  },
+  "product": {
+    "add_to_cart": "Sepete Ekle",
+    "added_to_cart": "Sepete Eklendi",
+    "per_portion": "porsiyon",
+    "size_label": "Boyut",
+    "pump_dosing": "1 pompa = 10ml",
+    "pro_badge": "PRO",
+    "weight": "Ağırlık",
+    "volume": "Hacim",
+    "portions": "Porsiyon",
+    "sku": "Stok Kodu"
+  },
+  "checkout": {
+    "title": "Ödeme",
+    "order_summary": "Sipariş Özeti",
+    "total": "Toplam",
+    "complete_order": "Siparişi Onayla",
+    "processing": "İşleniyor..."
+  },
+  "footer": {
+    "tagline": "Profesyonel matcha konsantresi. Standart, ölçeklenebilir, ekonomik.",
+    "products_title": "Ürünler",
+    "info_title": "Bilgi",
+    "contact_title": "İletişim",
+    "social_title": "Sosyal Medya"
+  },
+  "metadata": {
+    "root": {
+      "title": "macc-cino — Matcha Konsantre | Ceremonial Grade, Organik",
+      "description": "Profesyonel kullanım için standartlaştırılmış matcha konsantresi. Ceremonial Grade, organik, Almanya üretimi. 4 farklı boyut — 250ml, 500ml, 1000ml, 1000ml Pompalı."
+    },
+    "home": {
+      "title": "macc-cino — Matcha Konsantre",
+      "description": "Matcha — standart. ölçeklenebilir. ekonomik. Profesyonel kullanım için sıvı matcha konsantresi."
+    },
+    "contact": {
+      "title": "İletişim",
+      "description": "macc-cino ile iletişime geçin. Toplu sipariş, white label ve genel sorular için bize ulaşın."
+    },
+    "cart": {
+      "title": "Sepetim",
+      "description": "Sepetinizdeki ürünleri görüntüleyin."
+    },
+    "checkout": {
+      "title": "Ödeme",
+      "description": "Siparişinizi tamamlayın."
+    }
+  }
+}

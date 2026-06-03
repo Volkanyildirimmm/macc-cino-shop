@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { type ProductData } from "@/lib/constants";
 import { NUTRITION_DATA, INGREDIENTS, INGREDIENTS_NOTE } from "@/lib/constants";
@@ -18,7 +18,15 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
         <div className="flex items-center gap-2 text-sm" style={{ color: "#8A8A7A" }}>
           <Link href="/" className="hover:text-[#2D5016] transition-colors">Ana Sayfa</Link>
           <span>/</span>
-          <Link href="/#urunler" className="hover:text-[#2D5016] transition-colors">Ürünler</Link>
+          <Link
+            href={{
+              pathname: "/kategori/[handle]",
+              params: { handle: "matcha" },
+            }}
+            className="hover:text-[#2D5016] transition-colors"
+          >
+            Ürünler
+          </Link>
           <span>/</span>
           <span style={{ color: "#4A4A4A" }}>{product.title}</span>
         </div>

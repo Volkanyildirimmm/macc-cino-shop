@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 

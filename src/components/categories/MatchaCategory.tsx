@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Benefits } from "@/components/sections/Benefits";
 import { UseCases } from "@/components/sections/UseCases";
@@ -22,7 +23,9 @@ interface Props {
  * Diğer kategoriler için (örn. kahve-makineleri) ayrı component yazılır,
  * o kategorinin handle'ı gelince /kategori/[handle]/page.tsx tarafında dispatch edilir.
  */
-export function MatchaCategory({ products }: Props) {
+export async function MatchaCategory({ products }: Props) {
+  const t = await getTranslations("matcha_category");
+
   return (
     <div className="pt-24" style={{ backgroundColor: "#FAFAF7" }}>
       <HomeSchema />
@@ -35,17 +38,16 @@ export function MatchaCategory({ products }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-medium tracking-widest uppercase text-[#2D5016] mb-4">
-              Matcha Koleksiyonu
+              {t("collection_label")}
             </span>
             <h1
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight"
               style={{ color: "#1A1A1A" }}
             >
-              Matcha Ürünlerimiz
+              {t("title")}
             </h1>
             <p className="text-[#4A4A4A] mt-4 max-w-2xl mx-auto text-sm sm:text-base">
-              Dört farklı boyutta, her kullanım senaryosuna uygun matcha konsantresi.
-              Ceremonial Grade, organik, Almanya üretimi.
+              {t("subtitle")}
             </p>
           </div>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import {
   fetchCategories,
   fetchProductsByCategory,
@@ -11,22 +12,28 @@ import { MatchaCategory } from "@/components/categories/MatchaCategory";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
 
+const OG_LOCALE: Record<string, string> = {
+  tr: "tr_TR",
+  de: "de_DE",
+  en: "en_US",
+};
+
 // Her istekte fresh SSR — kategori/ürün admin'den eklendiğinde anında yansır.
 export const dynamic = "force-dynamic";
 
 interface Props {
-  params: Promise<{ handle: string }>;
+  params: Promise<{ locale: string; handle: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { handle } = await params;
+  const { locale, handle } = await params;
   const categories = await fetchCategories();
   const category = categories.find((c) => c.handle === handle);
   if (!category) return {};
 
-  const url = `${SITE_URL}/kategori/${handle}`;
+  const url = `${SITE_URL}/${locale}/kategori/${handle}`;
   const title = `${category.name} — Macc-cino`;
-  const description = category.description ?? `${category.name} ürünleri`;
+  const description = category.description ?? `${category.name}`;
 
   return {
     title,
@@ -37,41 +44,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       siteName: "macc-cino",
-      locale: "tr_TR",
+      locale: OG_LOCALE[locale] ?? "tr_TR",
       type: "website",
     },
   };
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const { handle } = await params;
+  const { locale, handle } = await params;
+  setRequestLocale(locale);
 
-  const [categories, products] = await Promise.all([
+  const [categories, products, tNav, tGen] = await Promise.all([
     fetchCategories(),
     fetchProductsByCategory(handle),
+    getTranslations({ locale, namespace: "nav" }),
+    getTranslations({ locale, namespace: "generic_category" }),
   ]);
 
   const category = categories.find((c) => c.handle === handle);
   if (!category) notFound();
 
   const adapted = adaptMedusaProducts(products);
+  const localizedUrl = `${SITE_URL}/${locale}/kategori/${handle}`;
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/${locale}` },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Kategoriler",
-        item: `${SITE_URL}/#kategoriler`,
+        name: tNav("categories"),
+        item: `${SITE_URL}/${locale}/#kategoriler`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: category.name,
-        item: `${SITE_URL}/kategori/${handle}`,
+        item: localizedUrl,
       },
     ],
   };
@@ -104,7 +115,7 @@ export default async function CategoryPage({ params }: Props) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block text-xs font-medium tracking-widest uppercase text-[#2D5016] mb-4">
-            Kategori
+            {tGen("section_label")}
           </span>
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight"
@@ -122,7 +133,7 @@ export default async function CategoryPage({ params }: Props) {
         {adapted.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-[#8A8A7A] text-lg">
-              Bu kategoride henüz ürün bulunmuyor.
+              {tGen("no_products")}
             </p>
           </div>
         ) : (

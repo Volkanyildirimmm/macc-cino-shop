@@ -1,0 +1,263 @@
+{
+  "common": {
+    "discover": "Entdecken",
+    "back": "Zurück",
+    "loading": "Wird geladen...",
+    "explore": "Entdecken →",
+    "all_rights_reserved": "Alle Rechte vorbehalten.",
+    "close": "Schließen",
+    "menu": "Menü",
+    "open_cart": "Warenkorb öffnen"
+  },
+  "nav": {
+    "categories": "Kategorien",
+    "matcha": "Matcha",
+    "contact": "Kontakt",
+    "white_label": "White Label",
+    "cart": "Warenkorb",
+    "language_switcher_label": "Sprache"
+  },
+  "hero": {
+    "tagline_prefix": "Ceremonial Grade",
+    "tagline_org": "Bio",
+    "tagline_origin": "Hergestellt in Deutschland",
+    "title_line1": "Matcha:",
+    "title_line2": "Japans grüne",
+    "title_line3": "Energie",
+    "subtitle_lead": "Standardisiertes Matcha-Konzentrat für den professionellen Einsatz.",
+    "subtitle_highlight": "Standard. Skalierbar. Wirtschaftlich.",
+    "cta_products": "Produkte entdecken →",
+    "cta_how": "Wie es funktioniert?",
+    "stat_portions_value": "100+",
+    "stat_portions_label": "Portionen / Flasche",
+    "stat_speed_value": "4×",
+    "stat_speed_label": "Schneller",
+    "stat_shelf_value": "12 Monate",
+    "stat_shelf_label": "Haltbarkeit",
+    "badge_mix": "Kein Anrühren",
+    "badge_equipment": "Keine Ausrüstung",
+    "badge_dosage": "Perfekte Dosierung",
+    "badge_clumps": "Keine Klumpen",
+    "badge_ready": "Fertige Mischung",
+    "badge_barista": "Kein Barista nötig",
+    "scroll_indicator": "SCROLLEN"
+  },
+  "categories": {
+    "section_label": "Sortiment",
+    "title": "Kategorien",
+    "subtitle": "Entdecken Sie alle unsere Produktgruppen",
+    "explore_link": "Entdecken →"
+  },
+  "matcha_category": {
+    "collection_label": "Matcha-Kollektion",
+    "title": "Unsere Matcha-Produkte",
+    "subtitle": "Vier verschiedene Größen, passend für jedes Einsatzszenario. Ceremonial Grade, bio, hergestellt in Deutschland."
+  },
+  "generic_category": {
+    "section_label": "Kategorie",
+    "no_products": "In dieser Kategorie sind noch keine Produkte verfügbar."
+  },
+  "how_it_works": {
+    "section_label": "Anwendung",
+    "title": "Perfekter Matcha in drei einfachen Schritten",
+    "subtitle": "In Sekunden fertig, kein Warten. Kein Aufschäumen oder Sieben notwendig.",
+    "step1_title": "Dosieren",
+    "step1_description": "12,5 ml Konzentrat einfüllen (2 Esslöffel oder 1 Pumpenhub)",
+    "step2_title": "Mischen",
+    "step2_description": "150 ml Wasser, Milch oder Pflanzendrink hinzufügen und verrühren",
+    "step3_title": "Genießen",
+    "step3_description": "Sofort servierfertig — kein Aufschäumen oder Sieben nötig"
+  },
+  "benefits": {
+    "section_label": "Vorteile",
+    "title": "Warum macc-cino?",
+    "subtitle": "Wir haben alle Herausforderungen des professionellen Matcha-Service gelöst.",
+    "fast_title": "Schnelle Zubereitung",
+    "fast_description": "In Sekunden fertig, kein Warten",
+    "consistent_title": "Konstante Qualität",
+    "consistent_description": "Jedes Mal der gleiche perfekte Geschmack, unabhängig vom Personal",
+    "cost_title": "Kalkulierbare Kosten",
+    "cost_description": "Vorhersehbare Margen durch präzise Dosierung",
+    "nobarista_title": "Kein Barista nötig",
+    "nobarista_description": "Jeder kann es zubereiten, keine spezielle Schulung erforderlich",
+    "shelf_title": "Lange Haltbarkeit",
+    "shelf_description": "Ungeöffnet 12 Monate, minimaler Schwund",
+    "organic_title": "Bio & Ceremonial Grade",
+    "organic_description": "Höchste Matcha-Qualität, bio-zertifiziert"
+  },
+  "use_cases": {
+    "section_label": "Anwendungsbereiche",
+    "title": "Für jede Umgebung geeignet",
+    "subtitle": "Vom professionellen Service bis zur Büro-Selbstbedienung, breites Anwendungsspektrum.",
+    "cafe_title": "Cafés & Restaurants",
+    "cafe_description": "Schneller Service, konstante Qualität, hohe Gewinnmarge",
+    "office_title": "Unternehmen & Büros",
+    "office_description": "Mitarbeiterzufriedenheit, einfache Selbstbedienung",
+    "fitness_title": "Fitness & Wellness",
+    "fitness_description": "Natürliche Energie, kalorienarm, gesunde Alternative",
+    "chain_title": "Kettenrestaurants",
+    "chain_description": "Standardisierte Prozesse, skalierbarer Betrieb"
+  },
+  "comparison": {
+    "section_label": "Vergleich",
+    "title": "Welche Größe passt zu Ihnen?",
+    "subtitle": "Wählen Sie das passende Produkt nach Ihrem Verbrauch.",
+    "recommended": "Empfohlen",
+    "row_volume": "Volumen",
+    "row_portions": "Portionen",
+    "row_price": "Preis",
+    "row_per_portion": "Pro Portion",
+    "row_dosing": "Dosierung",
+    "row_ideal": "Ideal für",
+    "dosing_spoon": "Löffel",
+    "dosing_pump": "1 Pumpenhub = 10 ml",
+    "ideal_test": "Test / Zuhause",
+    "ideal_small": "Regelmäßig / Kleines Café",
+    "ideal_heavy": "Intensive Nutzung",
+    "ideal_pro": "Professioneller Service"
+  },
+  "nutrition": {
+    "section_label": "Nährwerte",
+    "title": "Nährwertangaben",
+    "subtitle": "Detaillierte Informationen pro 100 ml und pro Portion (12,5 ml).",
+    "toggle_per100": "Pro 100 ml",
+    "toggle_per_serving": "Pro Portion (12,5 ml)",
+    "energy_kj": "Energie (kJ)",
+    "energy_kcal": "Energie (kcal)",
+    "fat": "Fett (g)",
+    "saturated_fat": "Davon gesättigte Fettsäuren (g)",
+    "carbs": "Kohlenhydrate (g)",
+    "sugar": "Davon Zucker (g)",
+    "protein": "Eiweiß (g)",
+    "salt": "Salz (g)",
+    "ingredients_title": "Zutaten",
+    "ingredients_value": "Wasser, Bio-Matcha-Pulver*, natürlicher Farbstoff: Chlorophyll, Süßungsmittel: Sucralose, Ascorbinsäure.",
+    "ingredients_note": "*aus biologischem Anbau, Ceremonial Grade"
+  },
+  "storage": {
+    "section_label": "Lagerung",
+    "title": "Lagerungsempfehlungen",
+    "subtitle": "Für maximale Frische und Haltbarkeit befolgen.",
+    "shake": "Vor Gebrauch gut schütteln",
+    "fridge": "Nach Öffnen im Kühlschrank (2-8°C) lagern",
+    "consume": "Nach Öffnen innerhalb von 4 Wochen verbrauchen",
+    "dilute": "Nicht unverdünnt trinken"
+  },
+  "faq": {
+    "section_label": "Häufig gestellte Fragen",
+    "title": "Alles über Matcha-Konzentrat",
+    "items": [
+      {
+        "q": "Was ist Matcha-Konzentrat?",
+        "a": "Matcha-Konzentrat ist eine flüssige Form aus Ceremonial Grade Bio-Matcha-Pulver. Mit Wasser oder Milch schnell verrührt entsteht sofort ein Matcha-Getränk; kein Aufschäumen oder Sieben nötig."
+      },
+      {
+        "q": "Wie verwendet man Matcha-Konzentrat?",
+        "a": "12,5 ml (etwa 2 Esslöffel oder 1 Pumpenhub) Konzentrat mit 150 ml Wasser, Milch oder Pflanzendrink mischen. Vor Gebrauch gut schütteln. Sofort servierfertig."
+      },
+      {
+        "q": "Wie viele Portionen ergibt eine Flasche?",
+        "a": "Die 250-ml-Flasche ergibt etwa 20 Portionen, die 500-ml-Flasche etwa 50 Portionen und die 1000-ml-Flasche etwa 100 Portionen. Jede Portion enthält 12,5 ml Konzentrat."
+      },
+      {
+        "q": "Wie lagert man Matcha-Konzentrat?",
+        "a": "Ungeöffnete Flaschen 12 Monate bei Raumtemperatur lagerbar. Nach dem Öffnen bei 2-8°C im Kühlschrank aufbewahren und innerhalb von 4 Wochen verbrauchen."
+      },
+      {
+        "q": "Ist das Konzentrat bio und Ceremonial Grade?",
+        "a": "Ja. macc-cino Matcha-Konzentrat verwendet Ceremonial Grade Matcha aus biologischem Anbau und wird in Deutschland hergestellt. Vegan und glutenfrei."
+      },
+      {
+        "q": "Wozu dient das Pumpen-Modell?",
+        "a": "Das 1000-ml-Pumpen-Modell gibt dank integrierter Dosierpumpe pro Hub exakt 10 ml (1 Portion) ab. Ermöglicht schnellen, konstanten Service in Profi-Cafés und Kettenrestaurants."
+      },
+      {
+        "q": "Sind Großhandel oder White Label möglich?",
+        "a": "Ja. Für Cafés, Kettenrestaurants und Einzelhandelsmarken bieten wir Großhandel und White-Label-Produktion. Nutzen Sie für ein Angebot das Kontaktformular."
+      }
+    ]
+  },
+  "contact": {
+    "section_label": "Kontakt",
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Für Großbestellungen, White Label und allgemeine Anfragen.",
+    "form_company": "Firmenname",
+    "form_company_placeholder": "Ihre Firma (optional)",
+    "form_name": "Name",
+    "form_name_placeholder": "Vor- und Nachname",
+    "form_email": "E-Mail",
+    "form_email_placeholder": "beispiel@email.com",
+    "form_phone": "Telefon",
+    "form_phone_placeholder": "+49 ...",
+    "form_message": "Nachricht",
+    "form_message_placeholder": "Ihre Nachricht...",
+    "form_submit": "Senden",
+    "form_submitting": "Wird gesendet...",
+    "form_success": "Ihre Nachricht wurde empfangen, wir melden uns in Kürze.",
+    "form_error": "Ein Fehler ist aufgetreten, bitte erneut versuchen.",
+    "form_error_required": "Dieses Feld ist erforderlich",
+    "form_error_email": "Bitte geben Sie eine gültige E-Mail ein",
+    "page_title": "Kontakt"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "go_products": "Produkte ansehen →",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "continue_shopping": "Weiter einkaufen",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "shipping_calculated": "Wird berechnet",
+    "checkout_arrow": "Zur Kasse →"
+  },
+  "product": {
+    "add_to_cart": "In den Warenkorb",
+    "added_to_cart": "Zum Warenkorb hinzugefügt",
+    "per_portion": "Portion",
+    "size_label": "Größe",
+    "pump_dosing": "1 Pumpenhub = 10 ml",
+    "pro_badge": "PRO",
+    "weight": "Gewicht",
+    "volume": "Volumen",
+    "portions": "Portionen",
+    "sku": "Artikelnummer"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "order_summary": "Bestellübersicht",
+    "total": "Gesamt",
+    "complete_order": "Bestellung abschließen",
+    "processing": "Wird verarbeitet..."
+  },
+  "footer": {
+    "tagline": "Professionelles Matcha-Konzentrat. Standard, skalierbar, wirtschaftlich.",
+    "products_title": "Produkte",
+    "info_title": "Information",
+    "contact_title": "Kontakt",
+    "social_title": "Social Media"
+  },
+  "metadata": {
+    "root": {
+      "title": "macc-cino — Matcha-Konzentrat | Ceremonial Grade, Bio",
+      "description": "Standardisiertes Matcha-Konzentrat für den professionellen Einsatz. Ceremonial Grade, bio, hergestellt in Deutschland. 4 Größen — 250 ml, 500 ml, 1000 ml, 1000 ml mit Pumpe."
+    },
+    "home": {
+      "title": "macc-cino — Matcha-Konzentrat",
+      "description": "Matcha — Standard. Skalierbar. Wirtschaftlich. Flüssiges Matcha-Konzentrat für professionelle Anwendung."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Nehmen Sie Kontakt mit macc-cino auf. Für Großbestellungen, White Label und allgemeine Anfragen."
+    },
+    "cart": {
+      "title": "Warenkorb",
+      "description": "Sehen Sie Ihre Artikel im Warenkorb."
+    },
+    "checkout": {
+      "title": "Kasse",
+      "description": "Schließen Sie Ihre Bestellung ab."
+    }
+  }
+}

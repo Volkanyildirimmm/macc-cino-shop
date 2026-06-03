@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 const inputClass = "w-full bg-white border border-[#D4D2CC] text-[#1A1A1A] placeholder-[#AAAAAA] rounded-[10px] px-4 py-[14px] text-sm focus:outline-none focus:border-[#2D5016] focus:ring-1 focus:ring-[#2D5016] transition-all";
-const selectClass = "w-full bg-white border border-[#D4D2CC] text-[#1A1A1A] rounded-[10px] px-4 py-[14px] text-sm focus:outline-none focus:border-[#2D5016] focus:ring-1 focus:ring-[#2D5016] transition-all";
 
 export function Contact() {
+  const t = useTranslations("contact");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,12 +28,14 @@ export function Contact() {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error === "invalid_email" ? "Geçersiz e-posta." : "Mesaj gönderilemedi, lütfen tekrar deneyin.");
+        setError(
+          data.error === "invalid_email" ? t("form_error_email") : t("form_error")
+        );
         return;
       }
       setSent(true);
     } catch {
-      setError("Bağlantı hatası. Lütfen tekrar deneyin.");
+      setError(t("form_error"));
     } finally {
       setLoading(false);
     }
@@ -42,19 +45,18 @@ export function Contact() {
     <section id="iletisim" className="py-24" style={{ backgroundColor: "#F5F3EE" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
-          <span className="text-[#2D5016] text-xs font-semibold uppercase tracking-widest mb-3 block">Teklif İste</span>
+          <span className="text-[#2D5016] text-xs font-semibold uppercase tracking-widest mb-3 block">
+            {t("section_label")}
+          </span>
           <TextReveal
-            text="Bizimle İletişime Geçin"
+            text={t("title")}
             as="h2"
             className="text-4xl sm:text-5xl font-display font-bold text-[#1A1A1A] mb-4 justify-center"
           />
-          <p className="text-[#4A4A4A] text-lg max-w-xl mx-auto">
-            Toplu sipariş veya genel sorularınız için formu doldurun
-          </p>
+          <p className="text-[#4A4A4A] text-lg max-w-xl mx-auto">{t("subtitle")}</p>
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-          {/* Form */}
           <AnimatedSection className="lg:col-span-3">
             {sent ? (
               <motion.div
@@ -63,8 +65,7 @@ export function Contact() {
                 className="bg-white border border-[#E8E6E0] rounded-2xl p-12 text-center shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
               >
                 <div className="text-5xl mb-4">✅</div>
-                <h3 className="text-[#1A1A1A] font-display font-bold text-xl mb-2">Mesajınız İletildi!</h3>
-                <p className="text-[#4A4A4A]">En kısa sürede size geri döneceğiz.</p>
+                <p className="text-[#4A4A4A]">{t("form_success")}</p>
               </motion.div>
             ) : (
               <form
@@ -73,52 +74,73 @@ export function Contact() {
               >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Firma Adı</label>
-                    <input name="company" type="text" required placeholder="ABC Kafe" className={inputClass} />
+                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                      {t("form_company")}
+                    </label>
+                    <input
+                      name="company"
+                      type="text"
+                      placeholder={t("form_company_placeholder")}
+                      className={inputClass}
+                    />
                   </div>
                   <div>
-                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">İsim Soyisim</label>
-                    <input name="name" type="text" required placeholder="Ali Yılmaz" className={inputClass} />
+                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                      {t("form_name")}
+                    </label>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder={t("form_name_placeholder")}
+                      className={inputClass}
+                    />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">E-posta</label>
-                    <input name="email" type="email" required placeholder="ali@kafe.com" className={inputClass} />
+                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                      {t("form_email")}
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder={t("form_email_placeholder")}
+                      className={inputClass}
+                    />
                   </div>
                   <div>
-                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Telefon</label>
-                    <input name="phone" type="tel" placeholder="+49 123 456 7890" className={inputClass} />
+                    <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                      {t("form_phone")}
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      placeholder={t("form_phone_placeholder")}
+                      className={inputClass}
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">İlgilendiğiniz Ürün</label>
-                  <select name="product" className={selectClass}>
-                    <option value="">Seçiniz...</option>
-                    <option>250ml — Başlangıç Boyutu</option>
-                    <option>500ml — Standart Boyut</option>
-                    <option>1000ml — Büyük Boy</option>
-                    <option>1000ml Pompalı — Profesyonel</option>
-                    <option>White Label / Özel Üretim</option>
-                    <option>Toplu Sipariş</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">Mesajınız</label>
+                  <label className="block text-[#2D3B28] text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                    {t("form_message")}
+                  </label>
                   <textarea
                     name="message"
                     rows={4}
                     required
-                    placeholder="Aylık tahmini kullanım, özel istekler..."
+                    placeholder={t("form_message_placeholder")}
                     className={`${inputClass} resize-none`}
                   />
                 </div>
 
                 {error && (
-                  <p className="text-red-600 text-sm" role="alert">{error}</p>
+                  <p className="text-red-600 text-sm" role="alert">
+                    {error}
+                  </p>
                 )}
 
                 <motion.button
@@ -135,43 +157,26 @@ export function Contact() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                       </svg>
-                      Gönderiliyor...
+                      {t("form_submitting")}
                     </>
-                  ) : "Teklif İste →"}
+                  ) : (
+                    t("form_submit")
+                  )}
                 </motion.button>
               </form>
             )}
           </AnimatedSection>
 
-          {/* Contact info */}
           <AnimatedSection direction="left" className="lg:col-span-2 space-y-5">
             <div className="bg-white border border-[#E8E6E0] rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-              <h3 className="text-[#1A1A1A] font-semibold mb-4">İletişim Bilgileri</h3>
+              <h3 className="text-[#1A1A1A] font-semibold mb-4">macc-cino</h3>
               <div className="space-y-3">
-                {[
-                  { icon: "📧", text: "info@macc-cino.com" },
-                  { icon: "🌐", text: "macc-cino.com" },
-                  { icon: "📦", text: "Almanya'dan dünya geneline" },
-                ].map((item) => (
-                  <p key={item.text} className="text-[#4A4A4A] text-sm flex items-center gap-3">
-                    <span>{item.icon}</span> {item.text}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-white border border-[#E8E6E0] rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-              <h3 className="text-[#1A1A1A] font-semibold mb-4">Güven Rozetleri</h3>
-              <div className="space-y-2">
-                {[
-                  "🇩🇪 Almanya'da üretilmektedir",
-                  "🌱 Organik sertifikalı",
-                  "🔒 Güvenli ödeme",
-                  "🚚 Hızlı Avrupa içi kargo",
-                  "↩️ 30 gün iade garantisi",
-                ].map((badge) => (
-                  <p key={badge} className="text-[#4A4A4A] text-sm">{badge}</p>
-                ))}
+                <p className="text-[#4A4A4A] text-sm flex items-center gap-3">
+                  <span>📧</span> info@macc-cino.com
+                </p>
+                <p className="text-[#4A4A4A] text-sm flex items-center gap-3">
+                  <span>🌐</span> macc-cino.com
+                </p>
               </div>
             </div>
           </AnimatedSection>

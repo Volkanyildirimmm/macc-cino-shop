@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useCart, type CartItem as CartItemType } from "@/hooks/useCart";
 import { formatPriceSimple } from "@/lib/utils";
 
 export function CartItem({ item }: { item: CartItemType }) {
+  const t = useTranslations("cart");
   const { removeItem, updateQuantity } = useCart();
 
   return (
@@ -55,7 +57,7 @@ export function CartItem({ item }: { item: CartItemType }) {
           onClick={() => removeItem(item.product.id)}
           className="text-[#8A8A7A] hover:text-red-500 transition-colors text-xs mt-1"
         >
-          Sil
+          {t("remove")}
         </button>
       </div>
     </motion.div>

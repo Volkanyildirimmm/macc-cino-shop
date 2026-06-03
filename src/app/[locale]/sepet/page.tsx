@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useCart } from "@/hooks/useCart";
 import { CartItem } from "@/components/cart/CartItem";
 import { formatPriceSimple } from "@/lib/utils";
 
 export default function SepetPage() {
+  const t = useTranslations("cart");
   const { items, total } = useCart();
 
   return (
@@ -17,7 +19,7 @@ export default function SepetPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-3xl font-display font-bold text-[#1A1A1A] mb-8"
         >
-          Sepetim
+          {t("title")}
         </motion.h1>
 
         {items.length === 0 ? (
@@ -27,12 +29,15 @@ export default function SepetPage() {
             className="text-center py-24"
           >
             <div className="text-5xl mb-4">🛒</div>
-            <p className="text-[#8A8A7A] text-lg mb-6">Sepetiniz boş</p>
+            <p className="text-[#8A8A7A] text-lg mb-6">{t("empty")}</p>
             <Link
-              href="/#urunler"
+              href={{
+                pathname: "/kategori/[handle]",
+                params: { handle: "matcha" },
+              }}
               className="inline-block bg-[#2D5016] hover:bg-[#3D6B1C] text-white font-bold px-8 py-3 rounded-xl transition-colors"
             >
-              Ürünlere Git →
+              {t("go_products")}
             </Link>
           </motion.div>
         ) : (
@@ -54,24 +59,23 @@ export default function SepetPage() {
                 transition={{ delay: 0.15 }}
                 className="bg-[#F5F3EE] border border-[#E8E6E0] rounded-2xl p-6 sticky top-24"
               >
-                <h2 className="text-[#1A1A1A] font-semibold mb-4">Sipariş Özeti</h2>
                 <div className="flex justify-between text-[#4A4A4A] text-sm mb-2">
-                  <span>Ara Toplam</span>
+                  <span>{t("subtotal")}</span>
                   <span>{formatPriceSimple(total(), items[0]?.product.currency)}</span>
                 </div>
                 <div className="flex justify-between text-[#8A8A7A] text-sm mb-4">
-                  <span>Kargo</span>
-                  <span>Hesaplanacak</span>
+                  <span>{t("shipping")}</span>
+                  <span>{t("shipping_calculated")}</span>
                 </div>
                 <div className="flex justify-between text-[#1A1A1A] font-bold text-lg border-t border-[#EEECE6] pt-4 mb-5">
-                  <span>Toplam</span>
+                  <span>{t("total")}</span>
                   <span>{formatPriceSimple(total(), items[0]?.product.currency)}</span>
                 </div>
                 <Link
                   href="/odeme"
                   className="block w-full text-center bg-[#2D5016] hover:bg-[#3D6B1C] text-white font-bold py-4 rounded-xl transition-colors"
                 >
-                  Siparişi Tamamla →
+                  {t("checkout_arrow")}
                 </Link>
               </motion.div>
             </div>

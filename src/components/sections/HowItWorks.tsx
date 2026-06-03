@@ -1,25 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HOW_IT_WORKS_STEPS } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export function HowItWorks() {
+  const t = useTranslations("how_it_works");
+
+  const steps = [
+    { step: 1, title: t("step1_title"), description: t("step1_description") },
+    { step: 2, title: t("step2_title"), description: t("step2_description") },
+    { step: 3, title: t("step3_title"), description: t("step3_description") },
+  ];
+
   return (
     <section id="nasil-hazirlanir" className="py-24" style={{ backgroundColor: "#F5F3EE" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="text-[#2D5016] text-xs font-semibold uppercase tracking-widest mb-3 block">
-            Kullanım Kılavuzu
+            {t("section_label")}
           </span>
           <TextReveal
-            text="Nasıl Hazırlanır?"
+            text={t("title")}
             as="h2"
             className="text-4xl sm:text-5xl font-display font-bold text-[#1A1A1A] mb-4 justify-center"
           />
           <p className="text-[#4A4A4A] text-lg max-w-xl mx-auto">
-            Üç basit adımda mükemmel matcha
+            {t("subtitle")}
           </p>
         </AnimatedSection>
 
@@ -28,7 +36,7 @@ export function HowItWorks() {
           <div className="hidden md:block absolute top-14 left-[16.66%] right-[16.66%] h-px bg-[#C5D4B8]" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-            {HOW_IT_WORKS_STEPS.map((step, i) => (
+            {steps.map((step, i) => (
               <motion.div
                 key={step.step}
                 initial={{ opacity: 0, y: 24 }}
@@ -52,21 +60,6 @@ export function HowItWorks() {
             ))}
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 bg-white border border-[#E8E6E0] rounded-2xl p-6 text-center max-w-2xl mx-auto shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
-        >
-          <p className="font-medium" style={{ color: "#1A1A1A" }}>
-            ⚡ Köpürtme veya süzme gerektirmez — <strong>anında hazır!</strong>
-          </p>
-          <p className="text-sm mt-1" style={{ color: "#4A4A4A" }}>
-            Pompalı modelde: 1 pompa = 10ml = 1 porsiyon
-          </p>
-        </motion.div>
       </div>
     </section>
   );

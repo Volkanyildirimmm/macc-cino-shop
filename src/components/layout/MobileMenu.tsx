@@ -1,24 +1,28 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useCart } from "@/hooks/useCart";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const links = [
-  { href: "/#kategoriler", label: "Kategoriler" },
-  { href: "/kategori/matcha", label: "Matcha" },
-  { href: "/white-label", label: "White Label" },
-  { href: "/iletisim", label: "İletişim" },
-];
-
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const { itemCount } = useCart();
   const count = itemCount();
+
+  const links = [
+    { href: "/#kategoriler", label: t("categories") },
+    { href: "/kategori/[handle]", params: { handle: "matcha" }, label: t("matcha") },
+    { href: "/white-label", label: t("white_label") },
+    { href: "/iletisim", label: t("contact") },
+  ] as const;
 
   return (
     <AnimatePresence>
@@ -40,23 +44,29 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           >
             <button
               onClick={onClose}
-              className="self-end mb-8 text-[#8A8A7A] hover:text-[#1A1A1A] transition-colors"
-              aria-label="Kapat"
+              className="self-end mb-6 text-[#8A8A7A] hover:text-[#1A1A1A] transition-colors"
+              aria-label={tCommon("close")}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
+            {/* Language switcher at top so it's visible without scrolling */}
+            <div className="mb-4">
+              <LanguageSwitcher />
+            </div>
+
             {links.map((link, i) => (
               <motion.div
-                key={link.href}
+                key={link.label}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.06 }}
               >
                 <Link
-                  href={link.href}
+                  // @ts-expect-error -- next-intl Link accepts dynamic href with params
+                  href={"params" in link ? { pathname: link.href, params: link.params } : link.href}
                   onClick={onClose}
                   className="block py-3 text-base font-semibold hover:text-[#2D5016] transition-colors border-b border-[#EEECE6]"
                   style={{ color: "#1A1A1A" }}
@@ -80,7 +90,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                Sepet {count > 0 && `(${count})`}
+                {t("cart")} {count > 0 && `(${count})`}
               </Link>
             </motion.div>
           </motion.nav>

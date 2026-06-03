@@ -1,0 +1,263 @@
+{
+  "common": {
+    "discover": "Discover",
+    "back": "Back",
+    "loading": "Loading...",
+    "explore": "Explore →",
+    "all_rights_reserved": "All rights reserved.",
+    "close": "Close",
+    "menu": "Menu",
+    "open_cart": "Open cart"
+  },
+  "nav": {
+    "categories": "Categories",
+    "matcha": "Matcha",
+    "contact": "Contact",
+    "white_label": "White Label",
+    "cart": "Cart",
+    "language_switcher_label": "Language"
+  },
+  "hero": {
+    "tagline_prefix": "Ceremonial Grade",
+    "tagline_org": "Organic",
+    "tagline_origin": "Made in Germany",
+    "title_line1": "Matcha:",
+    "title_line2": "Japan's Green",
+    "title_line3": "Energy",
+    "subtitle_lead": "Standardized matcha concentrate for professional use.",
+    "subtitle_highlight": "Standard. Scalable. Economical.",
+    "cta_products": "Explore Products →",
+    "cta_how": "How It Works?",
+    "stat_portions_value": "100+",
+    "stat_portions_label": "Servings / bottle",
+    "stat_speed_value": "4×",
+    "stat_speed_label": "Faster",
+    "stat_shelf_value": "12 months",
+    "stat_shelf_label": "Shelf life",
+    "badge_mix": "No mixing",
+    "badge_equipment": "No equipment needed",
+    "badge_dosage": "Perfect dosage",
+    "badge_clumps": "No clumps",
+    "badge_ready": "Ready-to-use",
+    "badge_barista": "No barista needed",
+    "scroll_indicator": "SCROLL"
+  },
+  "categories": {
+    "section_label": "Collection",
+    "title": "Categories",
+    "subtitle": "Browse all our product groups",
+    "explore_link": "Explore →"
+  },
+  "matcha_category": {
+    "collection_label": "Matcha Collection",
+    "title": "Our Matcha Products",
+    "subtitle": "Four different sizes, suited for every use case. Ceremonial Grade, organic, made in Germany."
+  },
+  "generic_category": {
+    "section_label": "Category",
+    "no_products": "No products in this category yet."
+  },
+  "how_it_works": {
+    "section_label": "How To Use",
+    "title": "Perfect matcha in three simple steps",
+    "subtitle": "Ready in seconds, no waiting. No whisking or straining needed.",
+    "step1_title": "Dose",
+    "step1_description": "Add 12.5 ml of concentrate (2 tablespoons or 1 pump)",
+    "step2_title": "Mix",
+    "step2_description": "Add 150 ml water, milk, or plant-based milk and stir",
+    "step3_title": "Enjoy",
+    "step3_description": "Ready to serve instantly — no whisking or straining required"
+  },
+  "benefits": {
+    "section_label": "Benefits",
+    "title": "Why macc-cino?",
+    "subtitle": "We've eliminated every challenge of professional matcha service.",
+    "fast_title": "Fast Preparation",
+    "fast_description": "Ready in seconds, no waiting",
+    "consistent_title": "Consistent Quality",
+    "consistent_description": "The same perfect taste every time, independent of staff",
+    "cost_title": "Predictable Cost",
+    "cost_description": "Predictable margins through precise dosing",
+    "nobarista_title": "No Barista Needed",
+    "nobarista_description": "Anyone can prepare it, no special training required",
+    "shelf_title": "Long Shelf Life",
+    "shelf_description": "12 months unopened, minimum waste and loss",
+    "organic_title": "Organic & Ceremonial Grade",
+    "organic_description": "Highest quality matcha, organic certified"
+  },
+  "use_cases": {
+    "section_label": "Use Cases",
+    "title": "Fit for any setting",
+    "subtitle": "From professional service to office self-service, a wide spectrum of uses.",
+    "cafe_title": "Cafés & Restaurants",
+    "cafe_description": "Fast service, consistent quality, high profit margin",
+    "office_title": "Corporate Offices",
+    "office_description": "Employee satisfaction, easy self-service",
+    "fitness_title": "Fitness & Wellness Centers",
+    "fitness_description": "Natural energy, low-calorie, healthy alternative",
+    "chain_title": "Chain Restaurants",
+    "chain_description": "Standard processes, scalable operation"
+  },
+  "comparison": {
+    "section_label": "Comparison",
+    "title": "Which size fits you?",
+    "subtitle": "Choose the right product based on your volume.",
+    "recommended": "Recommended",
+    "row_volume": "Volume",
+    "row_portions": "Servings",
+    "row_price": "Price",
+    "row_per_portion": "Per serving",
+    "row_dosing": "Dosing",
+    "row_ideal": "Ideal for",
+    "dosing_spoon": "Spoon",
+    "dosing_pump": "1 pump = 10 ml",
+    "ideal_test": "Test / Home",
+    "ideal_small": "Regular / Small café",
+    "ideal_heavy": "Heavy use",
+    "ideal_pro": "Professional service"
+  },
+  "nutrition": {
+    "section_label": "Nutrition",
+    "title": "Nutrition Facts",
+    "subtitle": "Detailed information per 100 ml and per serving (12.5 ml).",
+    "toggle_per100": "Per 100 ml",
+    "toggle_per_serving": "Per serving (12.5 ml)",
+    "energy_kj": "Energy (kJ)",
+    "energy_kcal": "Energy (kcal)",
+    "fat": "Fat (g)",
+    "saturated_fat": "Of which saturates (g)",
+    "carbs": "Carbohydrates (g)",
+    "sugar": "Of which sugars (g)",
+    "protein": "Protein (g)",
+    "salt": "Salt (g)",
+    "ingredients_title": "Ingredients",
+    "ingredients_value": "Water, Organic Matcha Powder*, Natural Colorant: Chlorophyll, Sweetener: Sucralose, Ascorbic Acid.",
+    "ingredients_note": "*from organic farming, Ceremonial Grade"
+  },
+  "storage": {
+    "section_label": "Storage",
+    "title": "Storage Recommendations",
+    "subtitle": "Follow these for maximum freshness and shelf life.",
+    "shake": "Shake well before use",
+    "fridge": "After opening, store in the fridge (2-8°C)",
+    "consume": "Consume within 4 weeks after opening",
+    "dilute": "Do not drink undiluted"
+  },
+  "faq": {
+    "section_label": "Frequently Asked Questions",
+    "title": "Everything about matcha concentrate",
+    "items": [
+      {
+        "q": "What is matcha concentrate?",
+        "a": "Matcha concentrate is a liquid form made from Ceremonial Grade organic matcha powder. Quickly mixed with water or milk, it becomes an instant matcha drink; no whisking or straining required."
+      },
+      {
+        "q": "How do I use matcha concentrate?",
+        "a": "Mix 12.5 ml (about 2 tablespoons or 1 pump) of concentrate with 150 ml of water, milk, or plant-based milk. Shake well before use. Ready to serve instantly."
+      },
+      {
+        "q": "How many servings per bottle?",
+        "a": "The 250 ml bottle yields about 20 servings, the 500 ml about 50, and the 1000 ml about 100 servings. Each serving contains 12.5 ml of concentrate."
+      },
+      {
+        "q": "How do I store matcha concentrate?",
+        "a": "Unopened bottles can be kept at room temperature for 12 months. After opening, store between 2-8°C in the fridge and consume within 4 weeks."
+      },
+      {
+        "q": "Is the concentrate organic and Ceremonial Grade?",
+        "a": "Yes. macc-cino matcha concentrate uses Ceremonial Grade matcha from organic farming and is produced in Germany. Vegan and gluten-free."
+      },
+      {
+        "q": "What is the pump model for?",
+        "a": "The 1000 ml pump model dispenses exactly 10 ml (1 serving) per push, thanks to its built-in dosing pump. Enables fast, consistent service in professional cafés and chain restaurants."
+      },
+      {
+        "q": "Is wholesale or white label available?",
+        "a": "Yes. We offer wholesale and white-label production for cafés, chain restaurants, and retail brands. Use the contact form for a quote."
+      }
+    ]
+  },
+  "contact": {
+    "section_label": "Contact",
+    "title": "Get in Touch",
+    "subtitle": "For bulk orders, white label, and general inquiries.",
+    "form_company": "Company Name",
+    "form_company_placeholder": "Your company (optional)",
+    "form_name": "Full Name",
+    "form_name_placeholder": "First and last name",
+    "form_email": "Email",
+    "form_email_placeholder": "example@email.com",
+    "form_phone": "Phone",
+    "form_phone_placeholder": "+1 ...",
+    "form_message": "Message",
+    "form_message_placeholder": "Your message...",
+    "form_submit": "Send",
+    "form_submitting": "Sending...",
+    "form_success": "Your message has been received, we'll get back to you shortly.",
+    "form_error": "An error occurred, please try again.",
+    "form_error_required": "This field is required",
+    "form_error_email": "Please enter a valid email",
+    "page_title": "Contact"
+  },
+  "cart": {
+    "title": "My Cart",
+    "empty": "Your cart is empty",
+    "go_products": "Browse products →",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue shopping",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shipping_calculated": "Calculated at checkout",
+    "checkout_arrow": "Checkout →"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "added_to_cart": "Added to Cart",
+    "per_portion": "serving",
+    "size_label": "Size",
+    "pump_dosing": "1 pump = 10 ml",
+    "pro_badge": "PRO",
+    "weight": "Weight",
+    "volume": "Volume",
+    "portions": "Servings",
+    "sku": "SKU"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "order_summary": "Order Summary",
+    "total": "Total",
+    "complete_order": "Place Order",
+    "processing": "Processing..."
+  },
+  "footer": {
+    "tagline": "Professional matcha concentrate. Standard, scalable, economical.",
+    "products_title": "Products",
+    "info_title": "Information",
+    "contact_title": "Contact",
+    "social_title": "Social Media"
+  },
+  "metadata": {
+    "root": {
+      "title": "macc-cino — Matcha Concentrate | Ceremonial Grade, Organic",
+      "description": "Standardized matcha concentrate for professional use. Ceremonial Grade, organic, made in Germany. 4 sizes — 250ml, 500ml, 1000ml, 1000ml with Pump."
+    },
+    "home": {
+      "title": "macc-cino — Matcha Concentrate",
+      "description": "Matcha — standard. scalable. economical. Liquid matcha concentrate for professional use."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with macc-cino. For bulk orders, white label, and general inquiries."
+    },
+    "cart": {
+      "title": "My Cart",
+      "description": "View items in your cart."
+    },
+    "checkout": {
+      "title": "Checkout",
+      "description": "Complete your order."
+    }
+  }
+}

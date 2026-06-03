@@ -1,18 +1,30 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { HANDLE_META, PRODUCTS } from "@/lib/constants";
 import { fetchProductByHandle } from "@/lib/medusa-fetch";
 import { adaptMedusaProduct } from "@/lib/product-adapter";
 import { ProductDetailPage } from "@/components/product/ProductDetail";
+import { routing } from "@/i18n/routing";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://shop.macc-cino.com";
 
+const OG_LOCALE: Record<string, string> = {
+  tr: "tr_TR",
+  de: "de_DE",
+  en: "en_US",
+};
+
 interface Props {
-  params: Promise<{ handle: string }>;
+  params: Promise<{ locale: string; handle: string }>;
 }
 
 export async function generateStaticParams() {
-  return Object.keys(HANDLE_META).map((handle) => ({ handle }));
+  // Pre-render product pages for every (locale, handle) combination so
+  // static generation works across the multi-locale tree.
+  return routing.locales.flatMap((locale) =>
+    Object.keys(HANDLE_META).map((handle) => ({ locale, handle }))
+  );
 }
 
 async function loadProduct(handle: string) {
@@ -25,14 +37,14 @@ async function loadProduct(handle: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { handle } = await params;
+  const { locale, handle } = await params;
   const product = await loadProduct(handle);
   if (!product) return {};
 
-  const url = `${SITE_URL}/urunler/${product.handle}`;
+  const url = `${SITE_URL}/${locale}/urunler/${product.handle}`;
   const idx = PRODUCTS.findIndex((p) => p.handle === product.handle);
   const image = `/images/product-${(idx >= 0 ? idx : 0) + 1}.jpeg`;
-  const title = `${product.title} — Ceremonial Grade Matcha Konsantre`;
+  const title = product.title;
 
   return {
     title,
@@ -43,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: product.description,
       url,
       siteName: "macc-cino",
-      locale: "tr_TR",
+      locale: OG_LOCALE[locale] ?? "tr_TR",
       type: "website",
       images: [{ url: image, width: 1200, height: 1200, alt: product.title }],
     },
@@ -57,12 +69,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { handle } = await params;
+  const { locale, handle } = await params;
+  setRequestLocale(locale);
   const product = await loadProduct(handle);
   if (!product) notFound();
 
   const idx = PRODUCTS.findIndex((p) => p.handle === product.handle);
-  const url = `${SITE_URL}/urunler/${product.handle}`;
+  const url = `${SITE_URL}/${locale}/urunler/${product.handle}`;
   const image = `${SITE_URL}/images/product-${(idx >= 0 ? idx : 0) + 1}.jpeg`;
 
   const productLd = {
@@ -84,7 +97,7 @@ export default async function ProductPage({ params }: Props) {
     offers: {
       "@type": "Offer",
       url,
-      priceCurrency: "EUR",
+      priceCurrency: product.currency,
       price: (product.price / 100).toFixed(2),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
@@ -96,8 +109,8 @@ export default async function ProductPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Ürünler", item: `${SITE_URL}/#urunler` },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/${locale}/#urunler` },
       { "@type": "ListItem", position: 3, name: product.title, item: url },
     ],
   };

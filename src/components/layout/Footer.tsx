@@ -1,6 +1,17 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
-export function Footer() {
+export async function Footer() {
+  const tFooter = await getTranslations("footer");
+  const tNav = await getTranslations("nav");
+
+  const productHandles = [
+    { handle: "matcha-konsantre-250ml", label: "Matcha 250ml" },
+    { handle: "matcha-konsantre-500ml", label: "Matcha 500ml" },
+    { handle: "matcha-konsantre-1000ml", label: "Matcha 1000ml" },
+    { handle: "matcha-konsantre-1000ml-pompali", label: "Matcha 1000ml Pump" },
+  ] as const;
+
   return (
     <footer style={{ backgroundColor: "#1A2E12" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -15,10 +26,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Matcha — standart. ölçeklenebilir. ekonomik.
-              <br />
-              Ceremonial Grade organik matcha konsantresi.
-              Almanya'da üretilmektedir.
+              {tFooter("tagline")}
             </p>
             <p className="text-white/30 text-xs mt-4">
               © {new Date().getFullYear()} macc-cino.com
@@ -27,17 +35,20 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest opacity-60">Ürünler</h3>
+            <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest opacity-60">
+              {tFooter("products_title")}
+            </h3>
             <ul className="space-y-2.5 text-sm">
-              {[
-                { href: "/urunler/matcha-konsantre-250ml", label: "Matcha 250ml" },
-                { href: "/urunler/matcha-konsantre-500ml", label: "Matcha 500ml" },
-                { href: "/urunler/matcha-konsantre-1000ml", label: "Matcha 1000ml" },
-                { href: "/urunler/matcha-konsantre-1000ml-pompali", label: "Matcha 1000ml Pompalı" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-white/50 hover:text-white transition-colors">
-                    {l.label}
+              {productHandles.map((p) => (
+                <li key={p.handle}>
+                  <Link
+                    href={{
+                      pathname: "/urunler/[handle]",
+                      params: { handle: p.handle },
+                    }}
+                    className="text-white/50 hover:text-white transition-colors"
+                  >
+                    {p.label}
                   </Link>
                 </li>
               ))}
@@ -46,30 +57,25 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest opacity-60">Bilgi</h3>
+            <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest opacity-60">
+              {tFooter("info_title")}
+            </h3>
             <ul className="space-y-2.5 text-sm">
-              {[
-                { href: "/iletisim", label: "İletişim" },
-                { href: "#", label: "Gizlilik Politikası" },
-                { href: "#", label: "Kullanım Koşulları" },
-              ].map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} className="text-white/50 hover:text-white transition-colors">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/iletisim"
+                  className="text-white/50 hover:text-white transition-colors"
+                >
+                  {tNav("contact")}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 text-xs text-white/30">
-            <span>Organik Sertifikalı</span>
-            <span>·</span>
-            <span>Almanya Üretimi</span>
-            <span>·</span>
-            <span>Ceremonial Grade</span>
+            <span>Ceremonial Grade · Organic · Made in Germany</span>
           </div>
           <p className="text-xs text-white/20">macc-cino.com</p>
         </div>

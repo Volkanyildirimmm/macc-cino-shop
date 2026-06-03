@@ -1,8 +1,12 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { fetchCategories } from "@/lib/medusa-fetch";
 
 export async function Categories() {
-  const categories = await fetchCategories();
+  const [categories, t] = await Promise.all([
+    fetchCategories(),
+    getTranslations("categories"),
+  ]);
 
   if (categories.length === 0) return null;
 
@@ -15,13 +19,13 @@ export async function Categories() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block text-xs font-medium tracking-widest uppercase text-[#2D5016] mb-4">
-            Koleksiyon
+            {t("section_label")}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#1A1A1A] tracking-tight">
-            Kategoriler
+            {t("title")}
           </h2>
           <p className="text-[#4A4A4A] mt-4 max-w-xl mx-auto text-sm sm:text-base">
-            Tüm ürün gruplarımıza göz atın
+            {t("subtitle")}
           </p>
         </div>
 
@@ -29,7 +33,10 @@ export async function Categories() {
           {categories.map((cat) => (
             <Link
               key={cat.id}
-              href={`/kategori/${cat.handle}`}
+              href={{
+                pathname: "/kategori/[handle]",
+                params: { handle: cat.handle },
+              }}
               className="group bg-white border border-[#E8E6E0] rounded-2xl p-6 sm:p-8 text-center hover:border-[#2D5016] hover:shadow-lg transition-all duration-300"
             >
               <h3
@@ -44,7 +51,7 @@ export async function Categories() {
                 </p>
               )}
               <span className="inline-block mt-4 text-[#2D5016] text-sm font-medium">
-                Keşfet →
+                {t("explore_link")}
               </span>
             </Link>
           ))}

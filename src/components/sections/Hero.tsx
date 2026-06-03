@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { Droplet, Settings2, Scale, Sparkles, Zap, Coffee } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { TextReveal } from "@/components/ui/TextReveal";
@@ -42,6 +43,7 @@ const PARTICLES = Array.from({ length: 12 }, (_, i) => ({
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const t = useTranslations("hero");
 
   // Hero hem anasayfada hem /kategori/matcha sayfasında render edilebilir.
   // Anasayfadaysa CTA butonları matcha kategori sayfasına yönlendirir,
@@ -51,7 +53,10 @@ export function Hero() {
 
   const goToProducts = () => {
     if (isHomepage()) {
-      router.push("/kategori/matcha#urunler");
+      router.push(
+        // @ts-expect-error -- next-intl router accepts hash on dynamic routes
+        { pathname: "/kategori/[handle]", params: { handle: "matcha" }, hash: "urunler" }
+      );
     } else {
       document.getElementById("urunler")?.scrollIntoView({ behavior: "smooth" });
     }
@@ -59,7 +64,10 @@ export function Hero() {
 
   const goToHowItWorks = () => {
     if (isHomepage()) {
-      router.push("/kategori/matcha#nasil-hazirlanir");
+      router.push(
+        // @ts-expect-error -- next-intl router accepts hash on dynamic routes
+        { pathname: "/kategori/[handle]", params: { handle: "matcha" }, hash: "nasil-hazirlanir" }
+      );
     } else {
       document
         .getElementById("nasil-hazirlanir")
@@ -116,13 +124,13 @@ export function Hero() {
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-2 bg-white border border-[#E8E6E0] text-[#4A4A4A] text-xs font-medium px-4 py-2 rounded-full mb-6 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#2D5016] animate-pulse" />
-                Ceremonial Grade · Organik · Almanya Üretimi
+                {t("tagline_prefix")} · {t("tagline_org")} · {t("tagline_origin")}
               </span>
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <TextReveal
-                text="Matcha: Japonyanın Yeşil Enerjisi"
+                text={`${t("title_line1")} ${t("title_line2")} ${t("title_line3")}`}
                 as="h1"
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-[#1A1A1A] leading-tight tracking-tight mb-6 justify-center lg:justify-start"
               />
@@ -132,8 +140,8 @@ export function Hero() {
               variants={itemVariants}
               className="text-[#4A4A4A] text-lg sm:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10"
             >
-              Profesyonel kullanım için standartlaştırılmış matcha konsantresi.{" "}
-              <span className="text-[#2D5016] font-medium">Standart. Ölçeklenebilir. Ekonomik.</span>
+              {t("subtitle_lead")}{" "}
+              <span className="text-[#2D5016] font-medium">{t("subtitle_highlight")}</span>
             </motion.p>
 
             <motion.div
@@ -144,14 +152,14 @@ export function Hero() {
                 onClick={goToProducts}
                 className="bg-[#2D5016] hover:bg-[#3D6B1C] text-white font-semibold px-8 py-4 rounded-xl text-base shadow-sm transition-colors duration-300"
               >
-                Ürünleri Keşfet →
+                {t("cta_products")}
               </MagneticButton>
 
               <MagneticButton
                 onClick={goToHowItWorks}
                 className="bg-[#1A1A1A] hover:bg-[#333333] text-white font-medium px-8 py-4 rounded-xl text-base transition-colors duration-300"
               >
-                Nasıl Yapılır?
+                {t("cta_how")}
               </MagneticButton>
             </motion.div>
 
@@ -161,9 +169,9 @@ export function Hero() {
               className="mt-14 flex flex-wrap gap-8 justify-center lg:justify-start"
             >
               {[
-                { value: "100+", label: "Porsiyon / şişe" },
-                { value: "4×", label: "Daha hızlı" },
-                { value: "12 ay", label: "Raf ömrü" },
+                { value: t("stat_portions_value"), label: t("stat_portions_label") },
+                { value: t("stat_speed_value"), label: t("stat_speed_label") },
+                { value: t("stat_shelf_value"), label: t("stat_shelf_label") },
               ].map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
                   <p className="text-2xl font-bold text-[#1A1A1A] font-display">{stat.value}</p>
@@ -207,7 +215,7 @@ export function Hero() {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
               >
-                <Droplet className="w-3.5 h-3.5 text-[#2D5016]" /> Karıştırma yok
+                <Droplet className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_mix")}
               </motion.div>
 
               <motion.div
@@ -215,7 +223,7 @@ export function Hero() {
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
               >
-                <Settings2 className="w-3.5 h-3.5 text-[#2D5016]" /> Ekipman gerektirmez
+                <Settings2 className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_equipment")}
               </motion.div>
 
               <motion.div
@@ -223,7 +231,7 @@ export function Hero() {
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
               >
-                <Scale className="w-3.5 h-3.5 text-[#2D5016]" /> Mükemmel dozaj
+                <Scale className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_dosage")}
               </motion.div>
 
               <motion.div
@@ -231,7 +239,7 @@ export function Hero() {
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#2D5016]" /> Topaklanma yok
+                <Sparkles className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_clumps")}
               </motion.div>
 
               <motion.div
@@ -239,7 +247,7 @@ export function Hero() {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
               >
-                <Zap className="w-3.5 h-3.5 text-[#2D5016]" /> Hazır karışım
+                <Zap className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_ready")}
               </motion.div>
 
               <motion.div
@@ -247,19 +255,19 @@ export function Hero() {
                 animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
               >
-                <Coffee className="w-3.5 h-3.5 text-[#2D5016]" /> Barista gerektirmez
+                <Coffee className="w-3.5 h-3.5 text-[#2D5016]" /> {t("badge_barista")}
               </motion.div>
             </div>
 
             {/* Mobile/tablet feature grid (visible below lg) */}
             <div className="grid grid-cols-2 gap-2 mt-8 w-full max-w-md lg:hidden">
               {[
-                { Icon: Droplet, label: "Karıştırma yok" },
-                { Icon: Settings2, label: "Ekipman gerektirmez" },
-                { Icon: Scale, label: "Mükemmel dozaj" },
-                { Icon: Sparkles, label: "Topaklanma yok" },
-                { Icon: Zap, label: "Hazır karışım" },
-                { Icon: Coffee, label: "Barista gerektirmez" },
+                { Icon: Droplet, label: t("badge_mix") },
+                { Icon: Settings2, label: t("badge_equipment") },
+                { Icon: Scale, label: t("badge_dosage") },
+                { Icon: Sparkles, label: t("badge_clumps") },
+                { Icon: Zap, label: t("badge_ready") },
+                { Icon: Coffee, label: t("badge_barista") },
               ].map(({ Icon, label }) => (
                 <div
                   key={label}
@@ -280,7 +288,7 @@ export function Hero() {
         animate={{ y: [0, 7, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <span className="text-[#8A8A7A] text-xs tracking-widest uppercase">Kaydır</span>
+        <span className="text-[#8A8A7A] text-xs tracking-widest uppercase">{t("scroll_indicator")}</span>
         <svg className="w-4 h-4 text-[#8A8A7A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
         </svg>
