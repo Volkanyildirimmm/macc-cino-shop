@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
 export async function Footer() {
@@ -19,11 +20,14 @@ export async function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl" style={{ fontFamily: "var(--font-logo), 'Kaushan Script', cursive" }}>
-                <span style={{ color: "#c9a961" }}>Macc</span>
-                <span style={{ color: "#e6cc8a" }}> & </span>
-                <span style={{ color: "#c9a961" }}>Cino</span>
-              </span>
+              <Image
+                src="/images/logo.png"
+                alt="Macc & Cino"
+                width={3310}
+                height={718}
+                className="h-9 w-auto"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
               {tFooter("tagline")}

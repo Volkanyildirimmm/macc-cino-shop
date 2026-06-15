@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useCart } from "@/hooks/useCart";
@@ -62,14 +63,15 @@ export function Header() {
                 }
               }}
             >
-              <motion.div
-                className="text-2xl lg:text-3xl tracking-tight"
-                style={{ fontFamily: "var(--font-logo), 'Kaushan Script', cursive" }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <span style={{ color: "#000000ff" }}>Macc</span>
-                <span style={{ color: "#535151ff" }}> & </span>
-                <span style={{ color: "#000000ff" }}>Cino</span>
+              <motion.div whileHover={{ scale: 1.02 }}>
+                <Image
+                  src="/images/logo.png"
+                  alt="Macc & Cino"
+                  width={3310}
+                  height={718}
+                  priority
+                  className="h-8 lg:h-9 w-auto"
+                />
               </motion.div>
             </Link>
 
