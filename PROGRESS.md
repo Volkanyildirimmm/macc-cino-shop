@@ -1,6 +1,6 @@
 # macc-cino — İlerleme Durumu
 
-Son güncelleme: 2026-05-08
+Son güncelleme: 2026-06-26
 
 ## Genel Mimari
 
@@ -80,6 +80,15 @@ Son güncelleme: 2026-05-08
 - Frontend `Dockerfile` + `.dockerignore` yazıldı (multi-stage, NEXT_PUBLIC_* build args)
 - Backend `Dockerfile` + `.dockerignore` yazıldı (turbo monorepo aware, `apps/backend/.medusa/server` çıktısı)
 - `COOLIFY-DEPLOY.md` (root'ta) — Coolify panelinde girilecek env şablonları + adımlar
+
+### Otomatik Dil — Konuma Göre (2026-06-26)
+- Ziyaretçinin **gerçek IP konumuna** göre site otomatik doğru dile açılıyor (Shopify mantığı). Ülke tespiti `geoip-lite` ile **çevrimdışı + lisanssız** (MaxMind key gerekmez).
+- Ülke→dil eşlemesi: `TR→tr`, `DE/AT/CH/LI→de`, **diğer tüm ülkeler→`en`** (kolay değiştirilebilir sabit, `src/i18n/geo.ts`).
+- Kullanıcı dili **elle seçince çereze (`NEXT_LOCALE`) yazılır** ve otomatik yönlendirme bir daha onu ezmez — manuel seçim her zaman kazanır.
+- **Storefront:** `src/middleware.ts` → `src/proxy.ts`'e taşındı (Next 16 standardı, Node runtime'da çalışır). next-intl middleware'i wrap ediyor, sadece `/`'de + çerez yokken geo yönlendirmesi yapıyor.
+  - `next.config.ts` → `serverExternalPackages: ["geoip-lite"]` **şart** (yoksa proxy bundle'ı "Cannot find the middleware module" ile patlıyor) + standalone'a DB için `outputFileTracingIncludes`. Production build doğrulandı, geo veritabanı standalone çıktısında.
+  - Geo, client IP'yi `X-Forwarded-For`'dan okur → Coolify/Traefik otomatik verir, ekstra ayar yok, Cloudflare gerekmez. Localhost'ta (public IP yok) varsayılan dile düşer.
+- **Aynı özellik Express marketing sitesinde de** kuruldu (`gokhanyigit06/Macc-cino`): `i18n/geo.js` + `trust proxy` + switcher artık `lang` çerezi yazıyor.
 
 ## Yapılacak ⏳
 
