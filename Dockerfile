@@ -4,9 +4,12 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-# --include=dev forces devDependencies (@tailwindcss/postcss, etc.) which next build needs,
-# even when Coolify injects NODE_ENV=production at build time
-RUN npm ci --include=dev
+# `npm install` (not `npm ci`): the lockfile is regenerated across different
+# local npm versions (npm 11) vs the build image (npm 10), which makes `npm ci`
+# fail on strict sync (e.g. "Missing @swc/helpers from lock file"). install
+# reconciles instead of failing. --include=dev forces devDependencies
+# (@tailwindcss/postcss, etc.) which next build needs, even with NODE_ENV=production.
+RUN npm install --include=dev
 
 # ---- builder ----
 FROM node:20-alpine AS builder
