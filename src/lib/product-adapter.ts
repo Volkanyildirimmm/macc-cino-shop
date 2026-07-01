@@ -1,7 +1,15 @@
 import type { MedusaProduct } from "./medusa-fetch";
-import { HANDLE_META, PRODUCTS, type ProductData } from "./constants";
+import {
+  HANDLE_META,
+  PRODUCTS,
+  localizeProductData,
+  type ProductData,
+} from "./constants";
 
-export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
+export function adaptMedusaProduct(
+  p: MedusaProduct,
+  locale: string
+): ProductData | null {
   const variant = p.variants?.[0];
   if (!variant) return null;
 
@@ -28,7 +36,7 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     fallback?.categories ??
     [];
 
-  return {
+  return localizeProductData({
     id: variant.id,
     handle: p.handle,
     title: p.title,
@@ -47,13 +55,16 @@ export function adaptMedusaProduct(p: MedusaProduct): ProductData | null {
     pumpDosage: meta?.pumpDosage ?? fallback?.pumpDosage,
     image,
     categories,
-  };
+  }, locale);
 }
 
-export function adaptMedusaProducts(products: MedusaProduct[]): ProductData[] {
+export function adaptMedusaProducts(
+  products: MedusaProduct[],
+  locale: string
+): ProductData[] {
   const ordered = [...PRODUCTS.map((p) => p.handle)];
   const adapted = products
-    .map(adaptMedusaProduct)
+    .map((p) => adaptMedusaProduct(p, locale))
     .filter((p): p is ProductData => p !== null);
   return adapted.sort(
     (a, b) => ordered.indexOf(a.handle) - ordered.indexOf(b.handle)

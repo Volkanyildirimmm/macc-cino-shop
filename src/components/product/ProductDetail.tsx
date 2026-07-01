@@ -1,22 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { type ProductData } from "@/lib/constants";
-import { NUTRITION_DATA, INGREDIENTS, INGREDIENTS_NOTE } from "@/lib/constants";
+import { type ProductData, NUTRITION_DATA } from "@/lib/constants";
 import { formatPriceSimple } from "@/lib/utils";
 import { AddToCart } from "./AddToCart";
 import { ProBadge } from "./ProBadge";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export function ProductDetailPage({ product }: { product: ProductData }) {
+  const t = useTranslations("product");
+  const tn = useTranslations("nutrition");
   return (
     <div className="min-h-screen pt-20" style={{ backgroundColor: "#FAFAF7" }}>
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         <div className="flex items-center gap-2 text-sm" style={{ color: "#8A8A7A" }}>
-          <Link href="/" className="hover:text-[#2D5016] transition-colors">Ana Sayfa</Link>
+          <Link href="/" className="hover:text-[#2D5016] transition-colors">{t("breadcrumb_home")}</Link>
           <span>/</span>
           <Link
             href={{
@@ -25,7 +27,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
             }}
             className="hover:text-[#2D5016] transition-colors"
           >
-            Ürünler
+            {t("breadcrumb_products")}
           </Link>
           <span>/</span>
           <span style={{ color: "#4A4A4A" }}>{product.title}</span>
@@ -64,7 +66,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
               >
                 <Image
                   src="/images/matcha-bottle-hero.png"
-                  alt={`${product.title} ${product.volume}ml — ${product.portions} porsiyon Ceremonial Grade organik matcha konsantresi`}
+                  alt={`${product.title} — ${product.volume}ml`}
                   fill
                   className="object-contain drop-shadow-2xl"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -80,7 +82,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
                   borderColor: "#E8E6E0",
                 }}
               >
-                {product.volume}ml · ~{product.portions} porsiyon
+                {product.volume}ml · ~{product.portions} {t("per_portion")}
               </div>
             </div>
           </motion.div>
@@ -100,7 +102,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
                 <div className="flex items-baseline justify-between mb-5">
                   <span className="text-4xl font-bold" style={{ color: "#1A1A1A" }}>{formatPriceSimple(product.price, product.currency)}</span>
                   <span className="text-sm" style={{ color: "#8A8A7A" }}>
-                    ~{formatPriceSimple(Math.round(product.price / product.portions), product.currency)}/porsiyon
+                    ~{formatPriceSimple(Math.round(product.price / product.portions), product.currency)}/{t("per_portion")}
                   </span>
                 </div>
                 <div className="space-y-3">
@@ -109,7 +111,7 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
                     href="/iletisim"
                     className="block w-full text-center border border-[#2D5016] text-[#2D5016] hover:bg-[#E8F0E0] py-3 rounded-xl text-sm font-medium transition-colors"
                   >
-                    Toplu Sipariş / Teklif İste
+                    {t("bulk_order")}
                   </Link>
                 </div>
               </div>
@@ -119,12 +121,12 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
             <AnimatedSection delay={0.15}>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: "SKU", value: product.sku },
-                  { label: "Hacim", value: `${product.volume}ml` },
-                  { label: "Porsiyon", value: `~${product.portions}` },
-                  { label: "Ağırlık", value: `${product.weight}g` },
-                  { label: "Üretim", value: "Almanya" },
-                  { label: "Raf Ömrü", value: "12 ay" },
+                  { label: t("sku"), value: product.sku },
+                  { label: t("volume"), value: `${product.volume}ml` },
+                  { label: t("portions"), value: `~${product.portions}` },
+                  { label: t("weight"), value: `${product.weight}g` },
+                  { label: t("production"), value: t("made_in") },
+                  { label: t("shelf_life"), value: t("shelf_life_value") },
                 ].map((item) => (
                   <div key={item.label} className="bg-[#F5F3EE] border border-[#EEECE6] rounded-xl p-3 text-center">
                     <p className="text-xs" style={{ color: "#8A8A7A" }}>{item.label}</p>
@@ -136,28 +138,28 @@ export function ProductDetailPage({ product }: { product: ProductData }) {
 
             {product.hasPump && (
               <AnimatedSection delay={0.2} className="bg-[#FAFAF7] border border-[#E8E6E0] rounded-2xl p-5 shadow-sm">
-                <p className="font-semibold mb-1" style={{ color: "#1A1A1A" }}>⚡ Pompa Dozajlama Sistemi</p>
-                <p className="text-sm" style={{ color: "#4A4A4A" }}>1 pompa = {product.pumpDosage}ml = 1 porsiyon. Hassas ve hızlı servis.</p>
+                <p className="font-semibold mb-1" style={{ color: "#1A1A1A" }}>⚡ {t("pump_heading")}</p>
+                <p className="text-sm" style={{ color: "#4A4A4A" }}>{t("pump_desc", { ml: product.pumpDosage ?? 10 })}</p>
               </AnimatedSection>
             )}
 
             <AnimatedSection delay={0.25}>
               <div className="border-t border-[#EEECE6] pt-5">
-                <h3 className="font-semibold mb-2" style={{ color: "#1A1A1A" }}>İçindekiler</h3>
-                <p className="text-sm" style={{ color: "#4A4A4A" }}>{INGREDIENTS}</p>
-                <p className="text-xs mt-1 italic" style={{ color: "#8A8A7A" }}>{INGREDIENTS_NOTE}</p>
+                <h3 className="font-semibold mb-2" style={{ color: "#1A1A1A" }}>{t("ingredients_heading")}</h3>
+                <p className="text-sm" style={{ color: "#4A4A4A" }}>{tn("ingredients_value")}</p>
+                <p className="text-xs mt-1 italic" style={{ color: "#8A8A7A" }}>{tn("ingredients_note")}</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
               <div className="border-t border-[#EEECE6] pt-5">
-                <h3 className="font-semibold mb-3" style={{ color: "#1A1A1A" }}>Besin Değerleri (100ml)</h3>
+                <h3 className="font-semibold mb-3" style={{ color: "#1A1A1A" }}>{t("nutrition_heading")}</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { label: "Enerji", value: `${NUTRITION_DATA.per100ml.energy_kcal} kcal` },
-                    { label: "Protein", value: `${NUTRITION_DATA.per100ml.protein} g` },
-                    { label: "Karbonhidrat", value: `${NUTRITION_DATA.per100ml.carbs} g` },
-                    { label: "Yağ", value: `${NUTRITION_DATA.per100ml.fat} g` },
+                    { label: t("n_energy"), value: `${NUTRITION_DATA.per100ml.energy_kcal} kcal` },
+                    { label: t("n_protein"), value: `${NUTRITION_DATA.per100ml.protein} g` },
+                    { label: t("n_carbs"), value: `${NUTRITION_DATA.per100ml.carbs} g` },
+                    { label: t("n_fat"), value: `${NUTRITION_DATA.per100ml.fat} g` },
                   ].map((n) => (
                     <div key={n.label} className="flex justify-between bg-[#F5F3EE] px-3 py-2 rounded-lg border border-[#EEECE6]">
                       <span className="text-sm" style={{ color: "#8A8A7A" }}>{n.label}</span>

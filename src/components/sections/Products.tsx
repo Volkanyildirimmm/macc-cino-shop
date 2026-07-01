@@ -1,14 +1,18 @@
 import { ProductCard } from "@/components/product/ProductCard";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { getLocale } from "next-intl/server";
 import { fetchAllProducts } from "@/lib/medusa-fetch";
 import { adaptMedusaProducts } from "@/lib/product-adapter";
-import { PRODUCTS } from "@/lib/constants";
+import { PRODUCTS, localizeProductData } from "@/lib/constants";
 
 export async function Products() {
+  const locale = await getLocale();
   const medusaProducts = await fetchAllProducts();
   const products =
-    medusaProducts.length > 0 ? adaptMedusaProducts(medusaProducts) : PRODUCTS;
+    medusaProducts.length > 0
+      ? adaptMedusaProducts(medusaProducts, locale)
+      : PRODUCTS.map((p) => localizeProductData(p, locale));
 
   return (
     <section id="urunler" className="py-24 bg-white">

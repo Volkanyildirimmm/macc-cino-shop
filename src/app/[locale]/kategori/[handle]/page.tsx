@@ -64,7 +64,7 @@ export default async function CategoryPage({ params }: Props) {
   const category = categories.find((c) => c.handle === handle);
   if (!category) notFound();
 
-  const adapted = adaptMedusaProducts(products);
+  const adapted = adaptMedusaProducts(products, locale);
   const localizedUrl = `${SITE_URL}/${locale}/kategori/${handle}`;
 
   const breadcrumbLd = {

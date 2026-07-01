@@ -1,9 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useLocale } from "next-intl";
 import { medusa } from "@/lib/medusa";
 import { adaptMedusaProducts, adaptMedusaProduct } from "@/lib/product-adapter";
-import { PRODUCTS, type ProductData } from "@/lib/constants";
+import { PRODUCTS, localizeProductData, type ProductData } from "@/lib/constants";
 import type { MedusaProduct } from "@/lib/medusa-fetch";
 
 const PRODUCT_FIELDS = [
@@ -47,7 +48,10 @@ export function useProducts(): {
     },
   });
 
-  const products = data ? adaptMedusaProducts(data) : PRODUCTS;
+  const locale = useLocale();
+  const products = data
+    ? adaptMedusaProducts(data, locale)
+    : PRODUCTS.map((p) => localizeProductData(p, locale));
   return { products, isLoading: isLoading && !data };
 }
 
@@ -69,8 +73,12 @@ export function useProduct(handle: string): {
     enabled: !!handle,
   });
 
+  const locale = useLocale();
+  const fallback = PRODUCTS.find((p) => p.handle === handle) ?? null;
   const product = data
-    ? adaptMedusaProduct(data)
-    : PRODUCTS.find((p) => p.handle === handle) ?? null;
+    ? adaptMedusaProduct(data, locale)
+    : fallback
+      ? localizeProductData(fallback, locale)
+      : null;
   return { product, isLoading: isLoading && !data };
 }

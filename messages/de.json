@@ -222,7 +222,22 @@
     "weight": "Gewicht",
     "volume": "Volumen",
     "portions": "Portionen",
-    "sku": "Artikelnummer"
+    "sku": "Artikelnummer",
+    "breadcrumb_home": "Startseite",
+    "breadcrumb_products": "Produkte",
+    "bulk_order": "Großbestellung / Angebot anfragen",
+    "production": "Herstellung",
+    "made_in": "Deutschland",
+    "shelf_life": "Haltbarkeit",
+    "shelf_life_value": "12 Monate",
+    "pump_heading": "Pumpen-Dosiersystem",
+    "pump_desc": "1 Pumpenhub = {ml} ml = 1 Portion. Präzise und schnelle Ausgabe.",
+    "ingredients_heading": "Zutaten",
+    "nutrition_heading": "Nährwerte (100 ml)",
+    "n_energy": "Energie",
+    "n_protein": "Eiweiß",
+    "n_carbs": "Kohlenhydrate",
+    "n_fat": "Fett"
   },
   "checkout": {
     "title": "Kasse",

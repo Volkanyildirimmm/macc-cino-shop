@@ -222,7 +222,22 @@
     "weight": "Weight",
     "volume": "Volume",
     "portions": "Servings",
-    "sku": "SKU"
+    "sku": "SKU",
+    "breadcrumb_home": "Home",
+    "breadcrumb_products": "Products",
+    "bulk_order": "Bulk Order / Request a Quote",
+    "production": "Made in",
+    "made_in": "Germany",
+    "shelf_life": "Shelf Life",
+    "shelf_life_value": "12 months",
+    "pump_heading": "Pump Dosing System",
+    "pump_desc": "1 pump = {ml} ml = 1 serving. Precise and fast serving.",
+    "ingredients_heading": "Ingredients",
+    "nutrition_heading": "Nutrition Facts (100ml)",
+    "n_energy": "Energy",
+    "n_protein": "Protein",
+    "n_carbs": "Carbohydrates",
+    "n_fat": "Fat"
   },
   "checkout": {
     "title": "Checkout",

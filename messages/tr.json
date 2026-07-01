@@ -222,7 +222,22 @@
     "weight": "Ağırlık",
     "volume": "Hacim",
     "portions": "Porsiyon",
-    "sku": "Stok Kodu"
+    "sku": "Stok Kodu",
+    "breadcrumb_home": "Ana Sayfa",
+    "breadcrumb_products": "Ürünler",
+    "bulk_order": "Toplu Sipariş / Teklif İste",
+    "production": "Üretim",
+    "made_in": "Almanya",
+    "shelf_life": "Raf Ömrü",
+    "shelf_life_value": "12 ay",
+    "pump_heading": "Pompa Dozajlama Sistemi",
+    "pump_desc": "1 pompa = {ml}ml = 1 porsiyon. Hassas ve hızlı servis.",
+    "ingredients_heading": "İçindekiler",
+    "nutrition_heading": "Besin Değerleri (100ml)",
+    "n_energy": "Enerji",
+    "n_protein": "Protein",
+    "n_carbs": "Karbonhidrat",
+    "n_fat": "Yağ"
   },
   "checkout": {
     "title": "Ödeme",

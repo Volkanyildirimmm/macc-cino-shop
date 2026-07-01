@@ -145,6 +145,135 @@ export const PRODUCTS: ProductData[] = [
   },
 ];
 
+// --- Per-locale product copy -------------------------------------------------
+// Medusa stores a single (Turkish) title/description per product, so the
+// translated catalog copy lives here and overrides the adapted product by
+// locale (see localizeProductData + product-adapter). Keyed by handle.
+type ProductLocale = "tr" | "de" | "en";
+
+interface LocalizedProductContent {
+  title: string;
+  subtitle: string;
+  description: string;
+  targetText: string;
+}
+
+export const PRODUCT_CONTENT: Record<
+  string,
+  Record<ProductLocale, LocalizedProductContent>
+> = {
+  "matcha-konsantre-250ml": {
+    tr: {
+      title: "Matcha Konsantre 250ml",
+      subtitle: "Başlangıç Boyutu",
+      description:
+        "Denemek ve küçük ölçekli kullanım için ideal başlangıç boyutu. Ceremonial Grade organik matcha konsantresi.",
+      targetText: "Test amaçlı, küçük işletmeler, düşük hacim",
+    },
+    de: {
+      title: "Matcha-Konzentrat 250ml",
+      subtitle: "Einsteigergröße",
+      description:
+        "Die ideale Einsteigergröße zum Ausprobieren und für den Gebrauch in kleinem Maßstab. Bio-Matcha-Konzentrat in Ceremonial Grade.",
+      targetText: "Zum Testen, kleine Betriebe, geringes Volumen",
+    },
+    en: {
+      title: "Matcha Concentrate 250ml",
+      subtitle: "Starter Size",
+      description:
+        "The ideal starter size for trying it out and small-scale use. Ceremonial grade organic matcha concentrate.",
+      targetText: "For testing, small businesses, low volume",
+    },
+  },
+  "matcha-konsantre-500ml": {
+    tr: {
+      title: "Matcha Konsantre 500ml",
+      subtitle: "Standart Boyut",
+      description:
+        "Düzenli kullanım ve orta ölçekli işletmeler için en uygun boyut. Ceremonial Grade organik matcha konsantresi.",
+      targetText: "Orta hacimli tüketim, düzenli kullanım",
+    },
+    de: {
+      title: "Matcha-Konzentrat 500ml",
+      subtitle: "Standardgröße",
+      description:
+        "Die passende Größe für den regelmäßigen Gebrauch und mittelgroße Betriebe. Bio-Matcha-Konzentrat in Ceremonial Grade.",
+      targetText: "Mittlerer Verbrauch, regelmäßiger Gebrauch",
+    },
+    en: {
+      title: "Matcha Concentrate 500ml",
+      subtitle: "Standard Size",
+      description:
+        "The best size for regular use and medium-sized businesses. Ceremonial grade organic matcha concentrate.",
+      targetText: "Medium-volume consumption, regular use",
+    },
+  },
+  "matcha-konsantre-1000ml": {
+    tr: {
+      title: "Matcha Konsantre 1000ml",
+      subtitle: "Büyük Boy",
+      description:
+        "Yoğun kullanım için büyük boy, maksimum verimlilik. Ceremonial Grade organik matcha konsantresi.",
+      targetText: "Yoğun kullanım, maksimum verimlilik",
+    },
+    de: {
+      title: "Matcha-Konzentrat 1000ml",
+      subtitle: "Großpackung",
+      description:
+        "Großpackung für intensiven Gebrauch und maximale Effizienz. Bio-Matcha-Konzentrat in Ceremonial Grade.",
+      targetText: "Intensiver Gebrauch, maximale Effizienz",
+    },
+    en: {
+      title: "Matcha Concentrate 1000ml",
+      subtitle: "Large Size",
+      description:
+        "Large size for intensive use and maximum efficiency. Ceremonial grade organic matcha concentrate.",
+      targetText: "Intensive use, maximum efficiency",
+    },
+  },
+  "matcha-konsantre-1000ml-pompali": {
+    tr: {
+      title: "Matcha Konsantre 1000ml Pompalı",
+      subtitle: "Profesyonel",
+      description:
+        "Pompa dozajlama sistemiyle hızlı ve hassas servis. 1 pompa = 10ml = 1 porsiyon. Profesyoneller için tasarlandı. Ceremonial Grade organik matcha konsantresi.",
+      targetText: "Profesyonel kullanım, kafeler, hızlı servis",
+    },
+    de: {
+      title: "Matcha-Konzentrat 1000ml mit Pumpe",
+      subtitle: "Professionell",
+      description:
+        "Schnelle und präzise Ausgabe dank Pumpen-Dosiersystem. 1 Pumpenhub = 10 ml = 1 Portion. Für Profis konzipiert. Bio-Matcha-Konzentrat in Ceremonial Grade.",
+      targetText: "Professioneller Einsatz, Cafés, schneller Service",
+    },
+    en: {
+      title: "Matcha Concentrate 1000ml with Pump",
+      subtitle: "Professional",
+      description:
+        "Fast and precise serving thanks to the pump dosing system. 1 pump = 10 ml = 1 serving. Designed for professionals. Ceremonial grade organic matcha concentrate.",
+      targetText: "Professional use, cafés, fast service",
+    },
+  },
+};
+
+// Override an adapted product's text fields with the localized catalog copy.
+// Unknown handles (future products) pass through unchanged (Medusa value).
+export function localizeProductData(
+  product: ProductData,
+  locale: string
+): ProductData {
+  const loc: ProductLocale = locale === "de" || locale === "en" ? locale : "tr";
+  const content = PRODUCT_CONTENT[product.handle]?.[loc];
+  if (!content) return product;
+  return {
+    ...product,
+    title: content.title,
+    subtitle: content.subtitle,
+    description: content.description,
+    targetText: content.targetText,
+  };
+}
+
 export const NUTRITION_DATA = {
   per100ml: {
     energy_kj: 150.33,

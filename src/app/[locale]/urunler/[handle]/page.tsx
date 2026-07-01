@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { HANDLE_META, PRODUCTS } from "@/lib/constants";
+import { HANDLE_META, PRODUCTS, localizeProductData } from "@/lib/constants";
 import { fetchProductByHandle } from "@/lib/medusa-fetch";
 import { adaptMedusaProduct } from "@/lib/product-adapter";
 import { ProductDetailPage } from "@/components/product/ProductDetail";
@@ -27,18 +27,19 @@ export async function generateStaticParams() {
   );
 }
 
-async function loadProduct(handle: string) {
+async function loadProduct(handle: string, locale: string) {
   const medusa = await fetchProductByHandle(handle);
   if (medusa) {
-    const adapted = adaptMedusaProduct(medusa);
+    const adapted = adaptMedusaProduct(medusa, locale);
     if (adapted) return adapted;
   }
-  return PRODUCTS.find((p) => p.handle === handle) ?? null;
+  const fallback = PRODUCTS.find((p) => p.handle === handle) ?? null;
+  return fallback ? localizeProductData(fallback, locale) : null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, handle } = await params;
-  const product = await loadProduct(handle);
+  const product = await loadProduct(handle, locale);
   if (!product) return {};
 
   const url = `${SITE_URL}/${locale}/urunler/${product.handle}`;
@@ -71,7 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { locale, handle } = await params;
   setRequestLocale(locale);
-  const product = await loadProduct(handle);
+  const product = await loadProduct(handle, locale);
   if (!product) notFound();
 
   const idx = PRODUCTS.findIndex((p) => p.handle === product.handle);
